@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Sperientia___SGI.Models.dbModels.Inventario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+<style>
+    .table td, .table th {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .datatable tbody td {
+        cursor: pointer;
+    }
+
+</style>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center pb-0 fs-4">Inventario</h5>
+
+                    <div class="col-lg-12 my-5 ">
+                        <button type="button" class="btn btn-success mx-2" onclick="location.href='@Url.Action("Create", "Inventario")'">
+                            <i class="bi bi-folder"></i> Crear
+                        </button>
+                    </div>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th style="width: 10%;">
+                                    Foto
+                                </th>
+                                <th>Codigo Interno</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Proveedor</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.IdInventario</td>
+                                        <td>
+                                            <img src="@item.Foto" class="img-fluid rounded-start">
+                                        </td>
+                                        <td>@item.CodigoInterno</td>
+                                        <td>@item.Nombre</td>
+                                        <td>@item.InventarioCategoria.Nombre</td>
+                                        <td>@item.Proveedor</td>
+                                        <td>
+                                            <a asp-action="Detalles" asp-route-id="@item.IdInventario"
+                                               class="btn btn-primary rounded-pill btn-sm"><i class="bi bi-info-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // $(".datatable tbody").on("click", "td", function () {
+        //     var numeroColaborador = $(this).closest("tr").find("td:first").text().trim();
+        //     var url = "/Inventario/Detalles/" + numeroColaborador; // Ajusta el controlador y acción
+        //     window.open(url, "_self");
+        // });
+    });
+</script>

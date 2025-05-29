@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sperientia - SGI", "Sperentia - SGI\Sperientia - SGI.csproj", "{47F80700-7236-D010-BB44-C136FCD5BC97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47F80700-7236-D010-BB44-C136FCD5BC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F80700-7236-D010-BB44-C136FCD5BC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F80700-7236-D010-BB44-C136FCD5BC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F80700-7236-D010-BB44-C136FCD5BC97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03C5A3A7-94A4-4A4A-827D-2B54CD68B28E}
+	EndGlobalSection
+EndGlobal

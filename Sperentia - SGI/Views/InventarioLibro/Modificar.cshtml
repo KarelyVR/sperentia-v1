@@ -1,0 +1,85 @@
+﻿@model Sperientia___SGI.ViewModel.InventarioViewModel
+
+@{
+    ViewData["Title"] = "Modificar Libro";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Modificar Libro</h5>
+                    <br />
+
+                    <div class="m-4 d-flex  justify-content-center">
+                        <form asp-action="ModificarRegistro" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="Libro.IdInventario">
+
+                            <div class="row mb-3">
+                                <label for="idInventario" class="col-md-5 col-lg-6 col-form-label">Nombre</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="Libro.Inventario.Nombre" disabled>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="Libro.Autor">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="editorial" class="col-md-5 col-lg-6 col-form-label">Editorial</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="Libro.Editorial">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="isbn" class="col-md-5 col-lg-6 col-form-label">ISBN</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="Libro.Isbn">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="reseña" class="col-md-5 col-lg-6 col-form-label">Reseña</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <textarea class="form-control" id="floatingTextarea" style="height: 100px;" asp-for="Libro.Reseña"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3 align-items-center">
+                                <label class="col-md-5 col-lg-6 col-form-label">Es Digital</label>
+                                <div class="col-md-7 col-lg-6 d-flex align-items-center gap-2">
+                                    <input type="checkbox" class="form-check-input" asp-for="Libro.EsDigital" />
+                                    <label class="mb-0">
+                                       Sí
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <br />
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+                                    <button type="button" class="btn btn-sm btn-warning me-2" onclick="location.href='@Url.Action("Index", "InventarioLibro")'">Volver</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Modificar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

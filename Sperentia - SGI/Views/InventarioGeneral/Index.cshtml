@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Sperientia___SGI.Models.dbModels.InventarioGeneral>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body card-block">
+                    <h5 class="card-title text-center pb-0 fs-4">Inventario General</h5>
+                    <div class="col-md-12">
+                        <div>
+                            <a asp-action="Create" class="btn btn-primary"><i class="bi bi-folder"></i> Nuevo</a>
+                        </div><br />
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>No. Serie</th>
+                                    <th>Condición</th>
+                                    <th>Fecha garantia</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.IdInventario</td>
+                                            <td>@item.Inventario.Nombre</td>
+                                            <td>@item.Marca</td>
+                                            <td>@item.Modelo</td>
+                                            <td>@item.NumeroSerie</td>
+                                            <td>@item.EstadoCondicion</td>
+                                            <td>@item.GarantiaFechaFin?.ToString("dd/MM/yyyy")</td>
+                                            <td>
+                                                <a asp-action="Detalles" asp-route-id="@item.IdInventario"
+                                                   class="btn btn-primary rounded-pill btn-sm"><i class="bi bi-info-lg"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</section>

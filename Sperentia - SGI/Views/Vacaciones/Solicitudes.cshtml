@@ -1,0 +1,132 @@
+﻿@model Sperientia___SGI.ViewModel.VacacionesViewModel
+
+@{
+    ViewData["Title"] = "Solicitudes Vacaciones";
+    Layout = "_LayoutAdmin";
+}
+
+
+<style>
+    .table td, .table th {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .datatable tbody td {
+        cursor: pointer;
+    }
+
+</style>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center pb-0 fs-4">Vacaciones | Solicitudes</h5>
+                    </br>
+                    <form asp-action="Solicitudes" method="post">
+
+                        <div class="row mb-3 align-items-center">
+                            <div class="col-1">
+                                <label for="empleado" class="col-form-label">Estado</label>
+                            </div>
+                            <div class="col-3">
+                                <select class="form-select" aria-label="Seleccionar estatus" asp-items="Model.Estatus" name="estatusId">
+                                    <option value="" selected>--Todos--</option>
+                                </select>
+                            </div>
+
+                            <div class="form-actions form-group col-auto">
+                                <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>No. Empleado</th>
+                                <th>Fecha Solicitud</th>
+                                <th>Sustituto</th>
+                                <th>Responsable RH</th>
+                                <th>Estado</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (Model.Solicitudes != null && Model.Solicitudes.Any())
+                            {
+                                foreach (var emp in Model.Solicitudes)
+                                {
+                                    <tr>
+                                        <td>@emp.UsuarioLogin_IdEmpleado.UsuarioInformacion.NumeroColaborador</td>
+                                        <td>@emp.FechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                        <td>@emp.SustitutoNombre</td>
+                                        <td>@emp.UsuarioLogin_IdUsuarioRh.NombreCompleto</td>
+                                        <td class="
+                                            @(
+                                                emp.SolicitudVacacionesEstatu.Descripcion == "Aprobado" ? "bg-success text-white" :
+                                                emp.SolicitudVacacionesEstatu.Descripcion == "No aprobado" ? "bg-danger text-white" :
+                                                emp.SolicitudVacacionesEstatu.Descripcion == "Pendiente" ? "bg-warning text-dark" :
+                                                ""
+                                            )">
+                                            @emp.SolicitudVacacionesEstatu.Descripcion
+                                        </td>
+                                        <td>
+                                            <a asp-action="Detalles" asp-route-id="@emp.IdSolicitud"
+                                               class="btn btn-primary rounded-pill btn-sm"><i class="bi bi-info-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Modal con mensaje -->
+<div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mensajeModalLabel">
+                    <a class="btn btn-primary rounded-pill btn-sm">
+                        <i class="bi bi-info-lg"></i>
+                    </a> Información
+                </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                @if (TempData["Mensaje"] != null)
+                {
+                    <p>@TempData["Mensaje"]</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        @if (TempData["Mensaje"] != null)
+        {
+            <text>
+                              $('#mensajeModal').modal('show');
+            </text>
+        }
+        });
+
+    </script>
+}

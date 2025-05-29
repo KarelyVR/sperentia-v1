@@ -1,0 +1,92 @@
+﻿@model Sperientia___SGI.ViewModel.InventarioViewModel
+
+@{
+    ViewData["Title"] = "Detalles Inventario General";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Detalles</h5>
+                    <br />
+
+                    <div class="m-4 d-flex  justify-content-center">
+                        <form>
+
+                            <div class="row mb-3">
+                                <label for="nombre" class="col-md-5 col-lg-6 col-form-label">Nombre</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="nombre" class="col-form-label">
+                                        @Model.General.Inventario.Nombre
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="marca" class="col-md-5 col-lg-6 col-form-label">Marca</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="modelo" class="col-form-label">
+                                        @Model.General.Marca
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="modelo" class="col-md-5 col-lg-6 col-form-label">Modelo</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="modelo" class="col-form-label">
+                                        @Model.General.Modelo
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="NoSerie" class="col-md-5 col-lg-6 col-form-label">No. Serie</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="noSerie" class="col-form-label">
+                                        @Model.General.NumeroSerie
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="condicion" class="col-md-5 col-lg-6 col-form-label">Condición</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="condicion" class="col-form-label">
+                                        @Model.General.EstadoCondicion
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="fechaG" class="col-md-5 col-lg-6 col-form-label">Fecha de Garantía</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="fechaG" class="col-form-label">
+                                        @Model.General.GarantiaFechaFin?.ToString("dd/MM/yyyy")
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <br />
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+                                    <button type="button" class="btn btn-sm btn-warning me-2" onclick="location.href='@Url.Action("Index", "InventarioGeneral")'">Volver</button>
+                                    @* <button type="button" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#verticalycentered">Eliminar</button> *@
+                                    <a class="btn btn-sm btn-success" asp-action="Modificar" asp-route-id="@Model.General.IdInventario">Modificar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

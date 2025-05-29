@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Error";
+    string statusCode = ViewData["StatusCode"]?.ToString() ?? "500";
+    string statusName = ViewData["StatusName"]?.ToString() ?? "Error";
+    var message = ViewData["Message"] ?? "Ha ocurrido un error inesperado.";
+}
+
+<div class="container">
+    <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <div class="d-flex justify-content-center align-items-end flex-column flex-lg-row text-center text-lg-start">
+            <h1 class="text-center">@statusCode</h1>
+            <p class="mt-2 mt-lg-0 ms-0 ms-lg-2 w-100 w-lg-auto">@statusName</p>
+        </div>
+        
+        <h2 class="text-center">@message</h2>
+        <a class="btn" href="/">Volver a inicio</a>
+        <img src="~/assetsAdmin/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
+    </section>
+</div>
+
+@section Css {
+    <style>
+        p {
+            font-size: 50px;
+            font-weight: 700;
+            color: #4154f1;
+            margin-bottom: 0;
+            line-height: 1;
+            font-family: "Nunito", sans-serif;
+        }
+    </style>
+}

@@ -1,0 +1,468 @@
+﻿@model Sperientia___SGI.ViewModel.ContenedorViewModel
+@* @model Sperientia___SGI.Models.dbModels.UsuarioInformacion *@
+
+
+@{
+    ViewData["Title"] = "Detalles Empleado";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Detalles</h5>
+
+                    <div class="m-4 justify-content-center">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <form>
+
+                                <div class="row mb-3">
+                                    <label for="numColab" class="col-md-5 col-lg-6 col-form-label">Numero de colaborador</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="numColab" class="col-form-label">
+                                            @Model.UsuarioInformacion.NumeroColaborador
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading1">
+                                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="true" aria-controls="flush-collapse1">
+                                            Personal
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse1" class="accordion-collapse collapse show" aria-labelledby="flush-headingFour">
+                                        <div class="accordion-body">
+
+                                            <div class="row mb-3">
+                                                <label for="pron" class="col-md-5 col-lg-6 col-form-label">Pronombre</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="pron" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Pronombre.Descripcion
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaNac" class="col-md-5 col-lg-6 col-form-label">Fecha de Nacimiento</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="fechaNac" class="col-form-label">
+                                                        @Model.UsuarioInformacion.FechaNacimiento.ToString("dd 'de' MMMM 'de' yyyy")
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="tel" class="col-md-5 col-lg-6 col-form-label">Teléfono</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="tel" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Telefono
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="esciv" class="col-md-5 col-lg-6 col-form-label">Estado Civil</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="esciv" class="col-form-label">
+                                                        @Model.UsuarioInformacion.EstadoCivil.Descripcion
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="pais" class="col-md-5 col-lg-6 col-form-label">País</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="pais" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Pai.Nombre
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="curp" class="col-md-5 col-lg-6 col-form-label">CURP</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="curp" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Curp
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="rfc" class="col-md-5 col-lg-6 col-form-label">RFC</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="rfc" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Rfc
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="nss" class="col-md-5 col-lg-6 col-form-label">Número de Seguro Social</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="nss" class="col-form-label">
+                                                        @Model.UsuarioInformacion.NumeroSeguroSocial
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="idNac" class="col-md-5 col-lg-6 col-form-label">Identificador Nacional</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="idNac" class="col-form-label">
+                                                        @Model.UsuarioInformacion.IdentificadorNacional
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="niv" class="col-md-5 col-lg-6 col-form-label">Nivel de Estudio</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="niv" class="col-form-label">
+                                                        @Model.UsuarioInformacion.NivelEstudio.Descripcion
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="ced" class="col-md-5 col-lg-6 col-form-label">Cédula Profesional</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="ced" class="col-form-label">
+                                                        @Model.UsuarioInformacion.CedulaProfesional
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="cursos" class="col-md-5 col-lg-6 col-form-label">Capacitaciones</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    @if (Model.Capacitaciones != null && Model.Capacitaciones.Any())
+                                                    {
+                                                        <ul>
+                                                            @foreach (var capacitacion in Model.Capacitaciones)
+                                                            {
+                                                                <li>
+                                                                    <b>@capacitacion.CapacitacionTipo.Descripcion - </b>@capacitacion.Nombre
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>N/A</label>
+                                                    }
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="talla" class="col-md-5 col-lg-6 col-form-label">Talla de Playera</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="talla" class="col-form-label">
+                                                        @Model.UsuarioInformacion.TallaPlayera?.Talla
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="banco" class="col-md-5 col-lg-6 col-form-label">Banco</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="banco" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Banco
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="clabe" class="col-md-5 col-lg-6 col-form-label">Clabe bancaria</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="clabe" class="col-form-label">
+                                                        @Model.UsuarioInformacion.BancoClabe
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="notas" class="col-md-5 col-lg-6 col-form-label">Notas</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="clabe" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Notas
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading2">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                                            Domicilio
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse2" class="accordion-collapse collapse" aria-labelledby="flush-heading2">
+                                        <div class="accordion-body">
+
+                                            <div class="row mb-3">
+                                                <label for="direccion" class="col-md-5 col-lg-6 col-form-label">Dirección</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="direccion" class="col-form-label">
+                                                        @Model.Direccion.Direccion_
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            @* <div class="row mb-3">
+                                                <label for="lat" class="col-md-5 col-lg-6 col-form-label">Latitud</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="lat" class="col-form-label">
+                                                        @Model.Direccion.Latitud
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="long" class="col-md-5 col-lg-6 col-form-label">Longitud</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="long" class="col-form-label">
+                                                        @Model.Direccion.Longitud
+                                                    </label>
+                                                </div>
+                                            </div> *@
+                                            @if (!string.IsNullOrWhiteSpace(Model.Direccion.GoogleMapsUrl))
+                                            {
+                                                <div class="row mb-3">
+                                                    <label for="urlmaps" class="col-md-5 col-lg-6 col-form-label">Google Maps Url</label>
+                                                    <div class="col-md-7 col-lg-6">
+                                                        <p><a href="@Model.Direccion.GoogleMapsUrl" target="_blank">@Model.Direccion.GoogleMapsUrl</a></p>
+                                                        <iframe width="300"
+                                                                height="300"
+                                                                style="border:0;"
+                                                                loading="lazy"
+                                                                referrerpolicy="no-referrer-when-downgrade"
+                                                                src="https://www.google.com/maps?q=@Model.Direccion.Latitud,@Model.Direccion.Longitud&hl=es&z=14&output=embed">
+                                                        </iframe>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading3">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                                            Organizacion
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse3" class="accordion-collapse collapse" aria-labelledby="flush-heading3">
+                                        <div class="accordion-body">
+                                            <div class="row mb-3">
+                                                <label for="contrato" class="col-md-5 col-lg-6 col-form-label">Tipo de contrato</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.TipoContrato.Descripcion
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="puesto" class="col-md-5 col-lg-6 col-form-label">Titulo o puesto</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Puesto
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="empresa" class="col-md-5 col-lg-6 col-form-label">Empresa</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Empresa.Nombre
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="departamento" class="col-md-5 col-lg-6 col-form-label">Departamento</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.Departamento.Nombre
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="superior" class="col-md-5 col-lg-6 col-form-label">Superior directo</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.UsuarioLogin_IdSupervisor.NombreCompleto
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaI" class="col-md-5 col-lg-6 col-form-label">Fecha de ingreso</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.FechaIngreso.ToString("dd 'de' MMMM 'de' yyyy")
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaA" class="col-md-5 col-lg-6 col-form-label">Fecha de ingreso asalariado</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.FechaIngresoAsalariado?.ToString("dd 'de' MMMM 'de' yyyy")
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaF" class="col-md-5 col-lg-6 col-form-label">Fecha fin del contrato</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.FechaFinContrato?.ToString("dd 'de' MMMM 'de' yyyy")
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="jornada" class="col-md-5 col-lg-6 col-form-label">Duración de la jornada</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.DuracionJornada horas
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="jornada" class="col-md-5 col-lg-6 col-form-label">Sueldo</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        $@Model.UsuarioInformacion.Sueldo @Model.UsuarioInformacion.Divisa.Nombre
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="beneficios" class="col-md-5 col-lg-6 col-form-label">Beneficios</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    @if (Model.Beneficios != null && Model.Beneficios.Any())
+                                                    {
+                                                        <ul>
+                                                            @foreach (var beneficio in Model.Beneficios)
+                                                            {
+                                                                <li>
+                                                                    <b>@beneficio.Beneficio.Nombre</b>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>N/A</label>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="vacaciones" class="col-md-5 col-lg-6 col-form-label">Dias disponibles de vacaciones</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="numColab" class="col-form-label">
+                                                        @Model.UsuarioInformacion.DiasDisponiblesVacaciones dias
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-heading4">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
+                                            Documentos
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapse4" class="accordion-collapse collapse" aria-labelledby="flush-heading4">
+                                        <div class="accordion-body">
+
+                                            <div class="row mb-3">
+                                                <label for="cv" class="col-md-5 col-lg-6 col-form-label">Curriculum Vitae</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <a href="/Empleado/VerDocumento?rutaArchivo=@Model.UsuarioInformacion.CurriculumVitaeUrl" target="_blank">Ver Currículum</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="acta" class="col-md-5 col-lg-6 col-form-label">Acta de nacimiento</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="acta" class="col-form-label">
+                                                        <a href="/Empleado/VerDocumento?rutaArchivo=@Model.UsuarioInformacion.ActaNacimientoUrl" target="_blank">Ver Acta de Nacimiento</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="dom" class="col-md-5 col-lg-6 col-form-label">Comprobante de Domicilio</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <label for="dom" class="col-form-label">
+                                                        <a href="/Empleado/VerDocumento?rutaArchivo=@Model.Direccion.ComprobanteDomicilioUrl" target="_blank">Ver Comprobante de Domicilio</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="row mb-3">
+                                    <div class="d-inline-flex justify-content-center" role="group">
+                                        <button type="button" class="btn btn-sm btn-warning me-2" onclick="location.href='@Url.Action("Index", "Empleado")'">Volver</button>
+                                        <button type="button" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#verticalycentered">Eliminar</button>
+                                        <a class="btn btn-sm btn-success" asp-action="Modificar" asp-route-id="@Model.UsuarioInformacion.IdUsuarioLogin">Modificar</a>
+
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="verticalycentered" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-exclamation-triangle"></i> Eliminar</h5>
+            </div>
+            <div class="modal-body">
+                <div class=" d-flex w-80 justify-content-center">
+                    ¿Desea eliminar el registro?
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

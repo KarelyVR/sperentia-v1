@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Sperientia___SGI.Models.dbModels.Beneficio>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body card-block">
+                    <h5 class="card-title text-center pb-0 fs-4">Beneficios</h5>
+                    <div class="col-md-12">
+                        <div>
+                            <a asp-action="Create" class="btn btn-primary"><i class="bi bi-folder"></i> Nuevo</a>
+                        </div><br />
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IdBeneficio)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Nombre)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Descripcion)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IdBeneficio)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descripcion)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Modificar" asp-route-id="@item.IdBeneficio" class="btn btn-primary btn-sm"><i class="bi bi-arrow-repeat"></i></a>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="modal" data-bs-target="#modalDelete" data-id="@item.IdBeneficio">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteLabel">Confirmar eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este registro?
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteForm" asp-action="Delete" method="post">
+                        <input type="hidden" id="deleteId" name="id" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-dismiss="modal">
+                            <i class="fa fa-ban"></i> Cancelar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".btn-delete").forEach(button => {
+            button.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+                if (id) {
+                    document.getElementById("deleteId").value = id;
+                } else {
+                    console.error("Error: data-id no encontrado.");
+                }
+            });
+        });
+    });
+</script>
+

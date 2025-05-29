@@ -1,0 +1,94 @@
+﻿@model Sperientia___SGI.ViewModel.AusenciaViewModel
+
+@{
+    ViewData["Title"] = "Detalles Ausencias";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Detalles</h5>
+                    <br />
+
+                    <div class="m-4 d-flex  justify-content-center">
+                        <form>
+
+                            <div class="row mb-3">
+                                <label for="codigo" class="col-md-5 col-lg-6 col-form-label">Empleado</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="codigo" class="col-form-label">
+                                        @Model.Ausencia.UsuarioLogin.NombreCompleto
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="nombre" class="col-md-5 col-lg-6 col-form-label">Fecha inicial</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="nombre" class="col-form-label">
+                                        @Model.Ausencia.FechaInicio.ToString("dd 'de' MMMM 'de' yyyy")
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="categoria" class="col-md-5 col-lg-6 col-form-label">Fecha final</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="categoria" class="col-form-label">
+                                        @Model.Ausencia.FechaFin?.ToString("dd 'de' MMMM 'de' yyyy")
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="descripcion" class="col-md-5 col-lg-6 col-form-label">Motivo</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="descripcion" class="col-form-label">
+                                        @Model.Ausencia.MotivoAusencia
+                                    </label>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+                                    <button type="button" class="btn btn-sm btn-warning me-2" onclick="location.href='@Url.Action("Index", "Ausencias")'">Volver</button>
+                                    @* <button type="button" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#verticalycentered">Eliminar</button> *@
+                                    <a class="btn btn-sm btn-success" asp-action="Modificar" asp-route-id="@Model.Ausencia.IdAusencia">Modificar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="verticalycentered" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-exclamation-triangle"></i> Eliminar</h5>
+            </div>
+            <div class="modal-body">
+                <div class=" d-flex w-80 justify-content-center">
+                    ¿Desea eliminar el registro?
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

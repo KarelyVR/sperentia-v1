@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Sperientia___SGI.Models.Services.UserService UserService
+
+@if (UserService.IsSignedIn(User))
+{
+    var userId = await UserService.GetIdAsync(User);
+    var fullName = await UserService.GetFullNameAsync(User);
+    var userName = await UserService.GetUserNameAsync(User);
+
+    <li class="nav-item dropdown pe-3">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="/ArchivosPrivados/ObtenerImagenPerfil/@userId" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">@userName</span>
+        </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+                <h6>@fullName</h6>
+                <span>Empleado</span>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li>
+                <a class="dropdown-item d-flex align-items-center" href='@Url.Action("PerfilUsuario", "Admin")'>
+                    <i class="bi bi-person"></i>
+                    <span>Mi Perfil</span>
+                </a>
+            </li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                    <button type="submit" class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </form>
+            </li>
+
+        </ul><!-- End Profile Dropdown Items -->
+    </li>
+
+    <!-- End Profile Nav -->
+}
+else
+{
+    <div class="">
+        <div class="header-mid-right-side d-lg-flex d-xl-none align-items-center ">
+            <a class="single-action-item" asp-area="Identity" asp-page="/Account/Login">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a class="single-action-item" asp-area="Identity" asp-page="/Account/Register">
+                <i class="fa-solid fa-user-plus"></i>
+            </a>
+        </div>
+        <div class="header-mid-right-side d-xl-flex d-none align-items-center ">
+            <a class="single-action-item px-3" asp-area="Identity" asp-page="/Account/Login">
+                <i class="fa-solid fa-user me-2"></i>
+                <span>Auntenticar</span>
+            </a>
+            <a class="single-action-item px-3" asp-area="Identity" asp-page="/Account/Register">
+                <i class="fa-solid fa-user-plus me-2"></i>
+                <span>Registro</span>
+            </a>
+        </div>
+        
+    </div>
+}

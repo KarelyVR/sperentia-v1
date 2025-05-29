@@ -1,0 +1,75 @@
+﻿@model Sperientia___SGI.ViewModel.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Modificar Usuario";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Modificar Usuario</h5>
+                    <br />
+
+                    <div class="m-4 d-flex  justify-content-center">
+                        <form asp-action="ModificarRegistro" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="NetUser.Id">
+
+                            <div class="row mb-3">
+                                <label for="username" class="col-md-5 col-lg-6 col-form-label">Nombre de Usuario</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="NetUser.UserName">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="nombre" class="col-md-5 col-lg-6 col-form-label">Nombre Completo</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="NetUser.NombreCompleto">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-5 col-lg-6 col-form-label">Correo</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="text" asp-for="NetUser.Email">
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="pass" class="col-md-5 col-lg-6 col-form-label">Contraseña</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="password" asp-for="NetUser.PasswordHash">
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="foto" class="col-md-5 col-lg-6 col-form-label">Fotografía</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <input class="form-control" type="file" asp-for="NetUser.FotografiaUrl">
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+                                    <button type="button" class="btn btn-sm btn-warning me-2" onclick="location.href='@Url.Action("Index", "Usuario")'">Volver</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Modificar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,584 @@
+﻿@model Sperientia___SGI.ViewModel.ContenedorViewModel
+
+@{
+    ViewData["Title"] = "Modificar Empleado";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Modificar Empleado</h5>
+
+                    <div class="m-4 justify-content-center">
+
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <form asp-action="ModificarRegistro" method="post" enctype="multipart/form-data" class="needs-validation">
+
+                                <input type="hidden" asp-for="UsuarioInformacion.IdUsuarioLogin" >
+
+                                <div class="row mb-3">
+                                    <label for="numColab" class="col-md-5 col-lg-6 col-form-label">Numero de colaborador</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="numColab" class="col-form-label">
+                                            @Model.UsuarioInformacion.NumeroColaborador
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header " id="flush-headingOne">
+                                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                            Personal
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne">
+                                        <div class="accordion-body">
+
+                                            <div class="row mb-3">
+                                                <label for="pronombre" class="col-md-5 col-lg-6 col-form-label">Pronombre</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdPronombre" class="form-select" asp-items="Model.Personal.Pronombres">
+                                                        <option>--Seleccione--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaNac" class="col-md-5 col-lg-6 col-form-label">
+                                                    Fecha de nacimiento
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="date" class="form-control" asp-for="UsuarioInformacion.FechaNacimiento" >
+                                                   @*  <div class="invalid-feedback">
+                                                        Seleccione una fecha
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="telefono" class="col-md-5 col-lg-6 col-form-label">
+                                                    Teléfono
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="number" class="form-control" asp-for="UsuarioInformacion.Telefono"
+                                                           pattern="[0-9]{10}" inputmode="numeric" >
+                                                  @*   <div class="invalid-feedback">
+                                                        Ingrese un télefono
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="estado civil" class="col-md-5 col-lg-6 col-form-label">
+                                                    Estado civil
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdEstadoCivil" class="form-select" asp-items="Model.Personal.EstadoCivil" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="pais" class="col-md-5 col-lg-6 col-form-label">
+                                                    Pais
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdPais" class="form-select" asp-items="Model.Personal.Pais" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="curp" class="col-md-5 col-lg-6 col-form-label">CURP</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.Curp">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="rfc" class="col-md-5 col-lg-6 col-form-label">RFC</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.Rfc">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="nss" class="col-md-5 col-lg-6 col-form-label">Número de Seguro Social</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="number" class="form-control" asp-for="UsuarioInformacion.NumeroSeguroSocial">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="idNac" class="col-md-5 col-lg-6 col-form-label">Id Nacional</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.IdentificadorNacional">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="nivel_estudios" class="col-md-5 col-lg-6 col-form-label">
+                                                    Nivel de estudio
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdNivelEstudio" class="form-select" asp-items="Model.Personal.NivelEstudio" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="cedula" class="col-md-5 col-lg-6 col-form-label">Cédula Profesional</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.CedulaProfesional">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="cursos" class="col-md-5 col-lg-6 col-form-label">Certificaciones</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="Capacitacion.capacitacionId"
+                                                            asp-items="Model.Capacitacion.TipoCapacitacion"
+                                                            id="capacitaciones"
+                                                            multiple="multiple"
+                                                            class="form-control">
+                                                    </select>
+                                                    <!-- Capacitaciones ya existentes -->
+                                                    <div id="inputs-capacitaciones-existentes" class="mt-3">
+                                                        @if (Model.Capacitaciones != null && Model.Capacitaciones.Any())
+                                                        {
+                                                            @for (int i = 0; i < Model.Capacitaciones.Count; i++)
+                                                            {
+                                                                <div class="mb-2 p-2 border rounded">
+                                                                    <input type="hidden" name="Capacitaciones[@i].IdCapacitacionUsuario" value="@Model.Capacitaciones[i].IdUsuario" />
+
+                                                                    <label class="form-label">@Model.Capacitaciones[i].CapacitacionTipo.Descripcion:</label>
+                                                                    <input type="text" name="Capacitaciones[@i].Nombre" class="form-control" value="@Model.Capacitaciones[i].Nombre" />
+
+                                                                    <input type="hidden" name="Capacitaciones[@i].IdCapacitacionTipo" value="@Model.Capacitaciones[i].IdCapacitacionTipo" />
+                                                                </div>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>No hay capacitaciones registradas.</p>
+                                                        }
+                                                    </div>
+
+                                                    <!-- Capacitaciones nuevas seleccionadas -->
+                                                    <div id="inputs-capacitaciones-nuevas" class="mt-3"></div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <label for="talla playera" class="col-md-5 col-lg-6 col-form-label">Talla playera</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdTallaPlayera" class="form-select" asp-items="Model.Personal.Playera">
+                                                        <option>--Seleccione--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="banco" class="col-md-5 col-lg-6 col-form-label">Banco</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.Banco">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="clabe" class="col-md-5 col-lg-6 col-form-label">Clabe bancaria</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.BancoClabe">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="notas" class="col-md-5 col-lg-6 col-form-label">Notas</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <textarea class="form-control" id="floatingTextarea" style="height: 100px;" asp-for="UsuarioInformacion.Notas">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFour">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                            Domicilio
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour">
+                                        <div class="accordion-body">
+                                            <div class="row mb-3">
+                                                <label for="direccion" class="col-md-5 col-lg-6 col-form-label">
+                                                    Dirección
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="text" asp-for="Direccion.Direccion_">
+                                                    @*   <div class="invalid-feedback">
+                                                        Ingrese una dirección
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="lat" class="col-md-5 col-lg-6 col-form-label">Latitud</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="number" step="any" asp-for="Direccion.Latitud">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="long" class="col-md-5 col-lg-6 col-form-label">Longitud</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="number" step="any" asp-for="Direccion.Longitud">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="url" class="col-md-5 col-lg-6 col-form-label">Google Maps Url</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="text" asp-for="Direccion.GoogleMapsUrl">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Organización
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+                                        <div class="accordion-body">
+
+                                            <div class="row mb-3">
+                                                <label for="numColab" class="col-md-5 col-lg-6 col-form-label">
+                                                    Numero de colaborador
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="number" class="form-control" asp-for="UsuarioInformacion.NumeroColaborador" >
+                                                  @*   <div class="invalid-feedback">
+                                                        Ingrese el número de colaborador
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="contrato" class="col-md-5 col-lg-6 col-form-label">
+                                                    Tipo de contrato
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdTipoContrato" class="form-select" asp-items="Model.Empresarial.TipoContrato" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                   @*  <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="puesto" class="col-md-5 col-lg-6 col-form-label">
+                                                    Titulo o puesto
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="text" class="form-control" asp-for="UsuarioInformacion.Puesto" />
+                                                  @*   <div class="invalid-feedback">
+                                                        Ingrese un puesto
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="empresa" class="col-md-5 col-lg-6 col-form-label">
+                                                    Empresa
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdEmpresa" class="form-select" asp-items="Model.Empresarial.Empresa" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="departamento" class="col-md-5 col-lg-6 col-form-label">
+                                                    Departamento
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdDepartamento" class="form-select" asp-items="Model.Empresarial.Departamento" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="superior" class="col-md-5 col-lg-6 col-form-label">Superior directo</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.IdSupervisor" class="form-select" asp-items="Model.Empresarial.Supervisor">
+                                                        <option>--Seleccione--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaI" class="col-md-5 col-lg-6 col-form-label">
+                                                    Fecha de ingreso
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="date" class="form-control" asp-for="UsuarioInformacion.FechaIngreso" >
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una fecha
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaA" class="col-md-5 col-lg-6 col-form-label">Fecha de ingreso asalariado</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="date" class="form-control" asp-for="UsuarioInformacion.FechaIngresoAsalariado">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="fechaF" class="col-md-5 col-lg-6 col-form-label">Fecha fin del contrato</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input type="date" class="form-control" asp-for="UsuarioInformacion.FechaFinContrato">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="jornada" class="col-md-5 col-lg-6 col-form-label">Duración de la jornada</label>
+
+                                                <div class="col-md-7 col-lg-6">
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" asp-for="UsuarioInformacion.DuracionJornada">
+                                                        <span class="input-group-text">horas</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="vacaciones" class="col-md-5 col-lg-6 col-form-label">
+                                                    Sueldo
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">$</span>
+                                                        <input type="number" class="form-control" asp-for="UsuarioInformacion.Sueldo" >
+                                                      @*   <div class="invalid-feedback">
+                                                            Ingrese un sueldo
+                                                        </div> *@
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="departamento" class="col-md-5 col-lg-6 col-form-label">
+                                                    Divisa
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <select asp-for="UsuarioInformacion.SueldoDivisa" class="form-select" asp-items="Model.Empresarial.Divisa" >
+                                                        <option value="">--Seleccione--</option>
+                                                    </select>
+                                                  @*   <div class="invalid-feedback">
+                                                        Seleccione una opción válida
+                                                    </div> *@
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="beneficios" class="col-md-5 col-lg-6 col-form-label">Beneficios asociados</label>
+                                                <div class="col-md-7 col-lg-6">
+                                                 
+                                                    @foreach (var beneficio in Model.Beneficio.Beneficios)
+                                                    {
+                                                        var valorInt = int.Parse(beneficio.Value);
+                                                        var estaSeleccionado = Model.Beneficio.BeneficiosSeleccionados?.Contains(valorInt) == true;
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input"
+                                                                   type="checkbox"
+                                                                   name="Beneficio.BeneficiosSeleccionados"
+                                                                   value="@beneficio.Value"
+                                                                   id="beneficio_@beneficio.Value"
+                                                            @(estaSeleccionado ? "checked" : "") />
+                                                            <label class="form-check-label" for="beneficio_@beneficio.Value">@beneficio.Text</label>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="vacaciones" class="col-md-5 col-lg-6 col-form-label">
+                                                    Dias disponibles de vacaciones
+                                                    <span class="text-warning">*</span>
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <div class="input-group">
+                                                        <input type="number" class="form-control" asp-for="UsuarioInformacion.DiasDisponiblesVacaciones" readonly>
+                                                        <span class="input-group-text">dias</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Documentos
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                                        <div class="accordion-body">
+                                            <div class="row mb-3">
+                                                <label for="cv" class="col-md-5 col-lg-6 col-form-label">
+                                                    Curriculum Vitae
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="file" name="CurriculumFile"  >
+                                                    <input type="hidden" asp-for="UsuarioInformacion.CurriculumVitaeUrl" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="acta" class="col-md-5 col-lg-6 col-form-label">
+                                                    Acta de nacimiento
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="file" name="ActaNacimientoFile"  >
+                                                    <input type="hidden" asp-for="UsuarioInformacion.ActaNacimientoUrl" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="dom" class="col-md-5 col-lg-6 col-form-label">
+                                                    Comprobante de domicilio
+                                                </label>
+                                                <div class="col-md-7 col-lg-6">
+                                                    <input class="form-control" type="file" name="ComprobanteDom"  >
+                                                    <input type="hidden" asp-for="Direccion.ComprobanteDomicilioUrl" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="row mb-3">
+                                    <div class="d-inline-flex justify-content-center" role="group">
+                                        <a class="btn btn-sm btn-warning me-2" asp-action="Detalles" asp-route-id="@Model.UsuarioInformacion.IdUsuarioLogin">Volver</a>
+                                        <button type="submit" class="btn btn-sm btn-primary">Modificar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const choices = new Choices('#capacitaciones', {
+            removeItemButton: true,
+            placeholderValue: '--Seleccionar--',
+            shouldSort: false,
+            itemSelectText: ''
+        });
+
+        const nuevasContainer = document.getElementById('inputs-capacitaciones-nuevas');
+
+                document.getElementById('capacitaciones').addEventListener('change', function () {
+            const selectedOptions = Array.from(this.selectedOptions).map(opt => ({
+                value: opt.value,
+                label: opt.text
+            }));
+
+            const existentes = Array.from(nuevasContainer.querySelectorAll('input[type="hidden"]'))
+                .map(i => i.value);
+
+            selectedOptions.forEach((item) => {
+                if (!existentes.includes(item.value)) {
+                    const currentCount = document.querySelectorAll('[name^="CapacitacionVM["]').length / 3; // Aprox 3 inputs por item
+                    const index = currentCount;
+
+                    const div = document.createElement('div');
+                    div.classList.add('mb-2', 'p-2', 'border', 'rounded');
+
+                    div.innerHTML = `
+                        <input type="hidden" name="CapacitacionVM[${index}].IdCapacitacionTipo" value="${item.value}" />
+                        <label class="form-label">${item.label}:</label>
+                        <input type="text" name="CapacitacionVM[${index}].Nombre" class="form-control" placeholder="Ingresa el nombre" />
+                    `;
+
+                    nuevasContainer.appendChild(div);
+                }
+            });
+        });
+
+    </script>
+
+}
+
+

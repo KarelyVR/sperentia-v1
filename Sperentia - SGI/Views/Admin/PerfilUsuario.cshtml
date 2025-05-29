@@ -1,0 +1,313 @@
+﻿@model Sperientia___SGI.ViewModel.ContenedorViewModel
+
+@{
+    ViewData["Title"] = "Perfil";
+    Layout = "_LayoutAdmin";
+}
+
+
+<div class="pagetitle">
+    <h1>Perfil</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            @* <li class="breadcrumb-item">Users</li> *@
+            <li class="breadcrumb-item active">Perfil</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    <img src="~/ArchivosPrivados/ObtenerImagenPerfil/@Model.UsuarioInformacion.IdUsuarioLogin" alt="Profile" class="rounded-circle">
+                    <h2 class="text-center">
+                        @Model.UsuarioInformacion.UsuarioLogin_IdUsuarioLogin.UserName
+                    </h2>
+                    <h3>@Model.UsuarioInformacion.Puesto</h3>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Datos personales</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-domicilio">Domicilio</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-educacion">Educación</button>
+                        </li>
+@* 
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-contactos">Emergencia</button>
+                        </li> *@
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-docs">Documentos</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                           
+                            <h5 class="card-title">Detalles</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nombre completo</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.UsuarioLogin_IdUsuarioLogin.NombreCompleto</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Pronombres</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Pronombre?.Descripcion</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Fecha de Nacimiento</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.FechaNacimiento.ToString("dd-MM-yyyy")</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Edad</div>
+                                <div class="col-lg-9 col-md-8">
+                                    @{
+                                        var fechaNacimiento = Model.UsuarioInformacion.FechaNacimiento;
+                                        var hoy = DateTime.Today;
+                                        var edad = hoy.Year - fechaNacimiento.Year;
+
+                                        if (fechaNacimiento.Date > hoy.AddYears(-edad))
+                                        {
+                                            edad--;
+                                        }
+                                    }
+                                    @edad años
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">CURP</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Curp</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">RFC</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Rfc</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Id Nacional</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.IdentificadorNacional</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Estado Civil</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.EstadoCivil.Descripcion</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Talla de playera</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.TallaPlayera?.Talla</div>
+                            </div>
+
+                            <h5 class="card-title">Contacto</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Correo eléctronico</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.UsuarioLogin_IdUsuarioLogin.Email</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Teléfono</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Telefono</div>
+                            </div>
+
+                            <h5 class="card-title">Datos bancarios</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Banco</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Banco</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Clabe bancaria</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.BancoClabe</div>
+                            </div>
+
+
+                            <h5 class="card-title">Datos del seguro</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Numero de Seguro Social</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.NumeroSeguroSocial</div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-overview" id="profile-domicilio">
+
+                            <h5 class="card-title">Detalles</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Dirección</div>
+                                <div class="col-lg-9 col-md-8">@Model.Direccion.Direccion_</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">País</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.Pai.Nombre</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Coordenada Lat</div>
+                                <div class="col-lg-9 col-md-8">@Model.Direccion.Latitud</div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Coordenada Lng</div>
+                                <div class="col-lg-9 col-md-8">@Model.Direccion.Longitud</div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Url mapa</div>
+                                <div class="col-lg-9 col-md-8"><a href="@Model.Direccion.GoogleMapsUrl" target="_blank">@Model.Direccion.GoogleMapsUrl</a></div>
+                             
+                                <div class="row justify-content-center">
+                                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                        <iframe width="300"
+                                                height="300"
+                                                style="border:0;"
+                                                loading="lazy"
+                                                referrerpolicy="no-referrer-when-downgrade"
+                                                src="https://www.google.com/maps?q=@Model.Direccion.Latitud,@Model.Direccion.Longitud&hl=es&z=14&output=embed">
+                                        </iframe>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-overview pt-3" id="profile-educacion">
+
+                            <h5 class="card-title">Estudios</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Nivel de estudios</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.NivelEstudio.Descripcion</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Cédula profesonal</div>
+                                <div class="col-lg-9 col-md-8">@Model.UsuarioInformacion.CedulaProfesional</div>
+                            </div>
+
+                            <h5 class="card-title">Certificaciones</h5>
+
+                            <div class="row">
+                                <div class="col-lg-9 col-md-8">
+                                    @if (Model.Capacitaciones != null && Model.Capacitaciones.Any())
+                                    {
+                                        <ul>
+                                            @foreach (var capacitacion in Model.Capacitaciones)
+                                            {
+                                                <li>
+                                                    <b>@capacitacion.CapacitacionTipo.Descripcion - </b>@capacitacion.Nombre
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @*<div class="tab-pane fade profile-overview pt-3" id="profile-contactos">
+
+                             <h5 class="card-title">Contactos de emergencia</h5>
+
+                            <div class="row">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Relación</th>
+                                            <th>Teléfono</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Juan Hector</td>
+                                            <td>Perez</td>
+                                            <td>Padre</td>
+                                            <td>8152459633</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>*@
+
+                        <div class="tab-pane fade profile-overview pt-3" id="profile-docs">
+
+                            <h5 class="card-title">Documentos subidos</h5>
+
+                            <form>
+                               
+                                <div class="row mb-3">
+                                    <label for="cv" class="col-md-4 col-lg-3 col-form-label">Curriculum</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="pt-2">
+                                            <a href="/Empleado/VerDocumento?rutaArchivo=@Model.UsuarioInformacion.CurriculumVitaeUrl" target="_blank">Curriculum-vitae</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="acta" class="col-md-4 col-lg-3 col-form-label">Acta de nacimiento</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="pt-2">
+                                            <a href="/Empleado/VerDocumento?rutaArchivo=@Model.UsuarioInformacion.ActaNacimientoUrl" target="_blank">Acta-de-nacimiento</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <label for="dom" class="col-md-4 col-lg-3 col-form-label">Comprobante de domicilio</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="pt-2">
+                                            <a href="/Empleado/VerDocumento?rutaArchivo=@Model.Direccion.ComprobanteDomicilioUrl" target="_blank">Comprobante-domicilio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                </br>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                </div>
+                            </form><!-- End Profile Edit Form -->
+
+                        </div>
+
+                    </div><!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

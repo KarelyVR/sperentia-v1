@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Sperientia___SGI.Models.dbModels.InventarioAsignacion>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+<style>
+    .table td, .table th {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .datatable tbody td {
+        cursor: pointer;
+    }
+
+</style>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center pb-0 fs-4">Inventario</h5>
+                    <br />
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;">Foto</th>
+                                <th>Descripción</th>
+                                <th>Categoria</th>
+                                <th>Fecha Entrega</th>
+                                <th>Fecha Devolución</th>
+                                <th>Notas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.Inventario.Foto" class="img-fluid rounded-start">
+                                        </td>
+                                        <td>@item.Inventario.Nombre</td>
+                                        <td>@item.Inventario.InventarioCategoria.Nombre</td>
+                                        <td>@item.FechaEntrega.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.FechaDevolucion?.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.Nota</td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

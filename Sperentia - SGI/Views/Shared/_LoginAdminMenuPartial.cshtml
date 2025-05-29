@@ -1,0 +1,281 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject Sperientia___SGI.Models.Services.UserService UserService
+
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        @* <li class="nav-heading">Vista usuario</li> *@
+        @if (!await UserService.IsInRoleAsync(User, "Administrador"))
+        {
+            <li class="nav-item">
+                <a class="nav-link collapsed" href='@Url.Action("PerfilUsuario", "Admin")'>
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span>Perfil</span>
+                </a>
+            </li>
+
+            <!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href='@Url.Action("InventarioEmpleado", "Admin")'>
+                    <i class="bi bi-question-circle"></i>
+                    <span>Inventario</span>
+                </a>
+            </li>
+
+            <!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href='@Url.Action("VacacionesEmpleado", "Admin")'>
+                    <i class="bi bi-envelope"></i>
+                    <span>Vacaciones</span>
+                </a>
+            </li>
+
+            <!-- End Contact Page Nav -->
+        }
+
+        @if (await UserService.IsInRoleAsync(User, "Administrador"))
+        {
+            @* <li class="nav-heading">Vista admin</li> *@
+
+            <li class="nav-item">
+                <a class="nav-link " href='@Url.Action("Index", "Admin")'>
+                    <i class="bi bi-grid"></i>
+                    <span>Inicio</span>
+                </a>
+            </li>
+
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="ri ri-archive-line"></i><span>Inventario</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href='@Url.Action("Index", "Inventario")'>
+                            <i class="bi bi-circle"></i><span>Principal</span>
+                        </a>
+                    </li>
+                  
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "InventarioGeneral")'>
+                            <i class="bi bi-circle"></i>
+                            <span>General</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "InventarioLibro")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Libros</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- End Components Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="ri ri-plane-line"></i><span>Vacaciones</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href='@Url.Action("Solicitudes", "Vacaciones")'>
+                            <i class="bi bi-circle"></i><span>Solicitudes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- End Forms Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                    <i class="ri ri-group-line"></i><span>Empleado</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href='@Url.Action("Index", "Empleado")'>
+                            <i class="bi bi-circle"></i><span>Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "Ausencias")'>
+                            <i class="bi bi-circle"></i><span>Ausencias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "InventarioAsignacion")'>
+                            <i class="bi bi-circle"></i><span>Asignar inventario</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "ServicioUsuario")'>
+                            <i class="bi bi-circle"></i><span>Asignar servicio</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- End Tables Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                    <i class="ri ri-bubble-chart-line"></i><span>Servicios</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href='@Url.Action("Index", "Servicios")'>
+                            <i class="bi bi-circle"></i><span>Inicio</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- End Charts Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-file-earmark-medical"></i><span>Reportes</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href='@Url.Action("Empleado", "Reporte")'>
+                            <i class="bi bi-circle"></i><span>Empleados</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Vacaciones", "Reporte")'>
+                            <i class="bi bi-circle"></i><span>Vacaciones</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Inventario", "Reporte")'>
+                            <i class="bi bi-circle"></i><span>Inventario</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Servicios", "Reporte")'>
+                            <i class="bi bi-circle"></i><span>Servicios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            @* <li class="nav-heading">Mantenimiento</li> *@
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#otros-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-tools"></i><span>Mantenimiento</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="otros-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Usuario")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Divisa")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Divisas</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Beneficio")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Beneficios</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Pronombre")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Pronombres</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "NivelEstudio")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Nivel de Estudio</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "TallaPlayera")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Talla de Playera</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Empresa")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Empresa</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Departamento")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Departamento</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "EstadoCivil")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Estado Civil</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Pais")'>
+                            <i class="bi bi-circle"></i>
+                            <span>País</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "TipoContrato")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Tipo de Contrato</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "EstatusVacaciones")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Estatus de Solicitud Vacaciones</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "Capacitacion")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Tipo de Capacitacion</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link " href='@Url.Action("Index", "InventarioCategoria")'>
+                            <i class="bi bi-circle"></i>
+                            <span>Categoria de Inventario</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <!-- End Icons Nav -->
+        }
+    </ul>
+
+</aside><!-- End Sidebar-->

@@ -1,0 +1,61 @@
+﻿@model Sperientia___SGI.Models.dbModels.TipoContrato
+
+@{
+    ViewData["Title"] = "Crear Tipo Contrato";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Nuevo</h5>
+
+                    <div class="m-4 d-flex  justify-content-center">
+
+                        <form asp-action="Create" class="form-horizontal">
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-5 col-lg-4">
+                                    <label asp-for="Descripcion" class="control-label"></label>
+                                </div>
+                                <div class="col-md-7 col-lg-8">
+                                    <input asp-for="Descripcion" class="form-control" />
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+
+                                    <a asp-action="Index" class="btn btn-warning btn-sm m-1"><i class="bi bi-ban" aria-hidden="true"></i> Cancelar</a>
+                                    <button type="submit" class="btn btn-success btn-sm m-1">
+                                        <i class="bi bi-arrow-repeat"></i> Crear
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

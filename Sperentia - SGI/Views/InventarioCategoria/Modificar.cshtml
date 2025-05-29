@@ -1,0 +1,58 @@
+﻿@model Sperientia___SGI.Models.dbModels.InventarioCategoria
+
+@{
+    ViewData["Title"] = "Modificar Categoria";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card ">
+                <div class="card-body ">
+                    <h5 class="card-title text-center pb-0 fs-4">Modificar</h5>
+
+                    <div class="m-4 d-flex  justify-content-center">
+
+                        <form asp-action="Modificar" class="form-horizontal">
+
+                            <input type="hidden" asp-for="IdCategoria" />
+
+                            <div class="row mb-3">
+                                <div class="col-md-5 col-lg-4">
+                                    <label asp-for="Nombre" class="control-label"></label>
+                                </div>
+                                <div class="col-md-7 col-lg-8">
+                                    <input asp-for="Nombre" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+
+                                <div class="d-inline-flex justify-content-center" role="group">
+
+                                    <a asp-action="Index" class="btn btn-warning btn-sm m-1"><i class="bi bi-ban" aria-hidden="true"></i> Cancelar</a>
+                                    <button type="submit" class="btn btn-success btn-sm m-1">
+                                        <i class="bi bi-arrow-repeat"></i> Modificar
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

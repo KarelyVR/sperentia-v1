@@ -1,0 +1,191 @@
+﻿@* @model IEnumerable<Sperientia___SGI.Models.dbModels.SolicitudVacaciones> *@
+@model Sperientia___SGI.ViewModel.VacacionesViewModel
+
+@{
+    ViewData["Title"] = "Vacaciones";
+    Layout = "_LayoutAdmin";
+}
+
+<section class="section d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 col-md-10 col-sm-8 d-flex flex-column align-items-center justify-content-center">
+                <!-- Ajusté el tamaño aquí -->
+
+                <div class="card mb-3 w-75">
+
+                    <div class="card-body">
+
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Vacaciones</h5>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-success rounded-pill fs-7" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+                                    Solicitar
+                                </button>
+                            </div>
+                        </div>
+
+                        <h5 class="card-title">Días de vacaciones</h5>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Totales</div>
+                            <div class="col-lg-9 col-md-8">
+                                <label>
+                                    @* @(Model != null && Model.Any() ? Model.First().DerechoDiasEmpleado.ToString() : "Sin datos") *@
+                                    @Model.DiasDisponiblesVacaciones
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Disponibles</div>
+                            <div class="col-lg-9 col-md-8">
+                                <label>
+                                    @* @(Model != null && Model.Any() ? Model.First().DerechoDiasEmpleado.ToString() : "Sin datos") *@
+                                    @Model.Vacaciones?.DerechoDiasEmpleado
+                                </label>
+                            </div>
+                        </div>
+
+                        <h5 class="card-title">Historial de vacaciones</h5>
+
+                        <div class="row">
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th>No. Solicitud</th>
+                                        <th>FechaSolicitud</th>
+                                        <th>Sustituto</th>
+                                        <th>Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.Solicitudes != null && Model.Solicitudes.Any())
+                                    {
+                                        foreach (var emp in Model.Solicitudes)
+                                        {
+                                            <tr>
+                                                <td>@emp.IdSolicitud</td>
+                                                <td>@emp.FechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                                <td>@emp.SustitutoNombre</td>
+                                                <td>@emp.SolicitudVacacionesEstatu.Descripcion</td>
+                                               
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="verticalycentered" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitar vacaciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class=" d-flex w-80 justify-content-center">
+                    <form asp-action="GuardarSolicitud" method="post" enctype="multipart/form-data">
+                        <input class="form-control" type="hidden" asp-for="VacacionSolicitud.IdEmpleado">
+                        <input class="form-control" type="hidden" asp-for="VacacionSolicitud.IdEstatus">
+                        <input class="form-control" type="hidden" asp-for="VacacionSolicitud.DerechoDiasEmpleado">
+                        <div class="row mb-3">
+                            <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fecha Inicio</label>
+                            <div class="col-md-8 col-lg-7">
+                                <input class="form-control" type="date" asp-for="VacacionSolicitud.FechaSolicitud" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="sustituto" class="col-md-4 col-lg-5 col-form-label">Sustituto</label>
+                            <div class="col-md-8 col-lg-7">
+                                <input class="form-control" type="text" asp-for="VacacionSolicitud.SustitutoNombre">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="tel" class="col-md-4 col-lg-5 col-form-label">Teléfono sustituto</label>
+                            <div class="col-md-8 col-lg-7">
+                                <input class="form-control" type="text" asp-for="VacacionSolicitud.SustitutoTelefono">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="rh" class="col-md-4 col-lg-5 col-form-label">Encargado RH</label>
+                            <div class="col-md-8 col-lg-7">
+                                <select asp-for="VacacionSolicitud.IdUsuarioRh" class="form-select" asp-items="Model.Usuarios">
+                                    <option>--Seleccione--</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                Se ha enviado la solicitud de vacaciones, por favor espere su respuesta
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<!-- Modal con mensaje -->
+<div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mensajeModalLabel">Información</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (TempData["Mensaje"] != null)
+                {
+                    <p>@TempData["Mensaje"]</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        @if (TempData["Mensaje"] != null)
+        {
+            <text>
+                       $('#mensajeModal').modal('show');
+            </text>
+        }
+        });
+
+    </script>
+}

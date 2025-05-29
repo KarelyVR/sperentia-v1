@@ -1,0 +1,115 @@
+﻿@model Sperientia___SGI.ViewModel.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body card-block">
+                    <h5 class="card-title text-center pb-0 fs-4">Usuarios</h5>
+                    <div class="col-md-12">
+                        <div>
+                            <a asp-action="Register" class="btn btn-primary"><i class="bi bi-folder"></i> Nuevo</a>
+                        </div><br />
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">
+                                        @Html.DisplayNameFor(model => model.Fotografia)
+                                    </th>
+                                    <th>
+                                        User Name
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NombreCompleto)
+                                    </th>
+                                    <th>
+                                        Estatus
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @if (Model.Usuarios != null && Model.Usuarios.Any())
+                                {
+                                    foreach (var emp in Model.Usuarios)
+                                    {
+                                        <tr>
+                                            <td><img src="~/ArchivosPrivados/ObtenerImagenPerfil/@emp.Id" width="100px"/></td>
+                                            <td>@emp.UserName</td>
+                                            <td>@emp.NombreCompleto</td>
+                                            <td>@(emp.EstaActivo ? "Activo" : "Inactivo")</td>
+                                            <td>
+                                                <a asp-action="Modificar" asp-route-id="@emp.Id"
+                                                   class="btn btn-primary rounded-pil btn-sm"><i class="bi bi-arrow-repeat"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+@* 
+    <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteLabel">Confirmar eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este registro?
+                </div>
+                <div class="modal-footer">
+                    <form id="deleteForm" asp-action="Delete" method="post">
+                        <input type="hidden" id="deleteId" name="id" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm" data-bs-dismiss="modal">
+                            <i class="fa fa-ban"></i> Cancelar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> *@
+
+
+</section>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // document.querySelectorAll(".btn-delete").forEach(button => {
+        //     button.addEventListener("click", function () {
+        //         const id = this.getAttribute("data-id");
+        //         if (id) {
+        //             document.getElementById("deleteId").value = id;
+        //         } else {
+        //             console.error("Error: data-id no encontrado.");
+        //         }
+        //     });
+        // });
+    });
+</script>
+

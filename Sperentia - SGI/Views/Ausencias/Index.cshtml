@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Sperientia___SGI.Models.dbModels.Ausencia>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+
+<style>
+    .table td, .table th {
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+
+    .datatable tbody td {
+        cursor: pointer;
+    }
+
+</style>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center pb-0 fs-4">Ausencias</h5>
+
+                    <div class="col-lg-12 my-5 ">
+                        <button type="button" class="btn btn-success mx-2" onclick="location.href='@Url.Action("Create", "Ausencias")'">
+                            <i class="bi bi-folder"></i> Crear
+                        </button>
+                    </div>
+
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha Inicial</th>
+                                <th>Fecha Final</th>
+                                <th>Motivo</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.UsuarioLogin.NombreCompleto</td>
+                                        <td>@item.FechaInicio.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.FechaFin?.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.MotivoAusencia</td>
+                                        <td>
+                                            <a asp-action="Detalles" asp-route-id="@item.IdAusencia"
+                                               class="btn btn-primary rounded-pill btn-sm"><i class="bi bi-info-lg"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
