@@ -100,11 +100,20 @@
                         <input class="form-control" type="hidden" asp-for="VacacionSolicitud.IdEstatus">
                         <input class="form-control" type="hidden" asp-for="VacacionSolicitud.DerechoDiasEmpleado">
                         <div class="row mb-3">
-                            <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fecha Inicio</label>
+                            <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fecha de Solicitud</label>
                             <div class="col-md-8 col-lg-7">
                                 <input class="form-control" type="date" asp-for="VacacionSolicitud.FechaSolicitud" required>
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fechas</label>
+                            <div class="col-md-8 col-lg-7">
+                                <input id="mdp-demo" type="text" class="form-control" readonly />
+                                <input type="hidden" id="selectedDates" name="Fechas" />
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label for="sustituto" class="col-md-4 col-lg-5 col-form-label">Sustituto</label>
@@ -175,16 +184,36 @@
 </div>
 
 @section scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/pepper-grinder/jquery-ui.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.rawgit.com/dubrox/Multiple-Dates-Picker-for-jQuery-UI/master/jquery-ui.multidatespicker.js"></script>
+
 
     <script type="text/javascript">
 
         $(document).ready(function () {
-        @if (TempData["Mensaje"] != null)
-        {
-            <text>
-                       $('#mensajeModal').modal('show');
-            </text>
-        }
+            @if (TempData["Mensaje"] != null)
+            {
+                <text>
+                           $('#mensajeModal').modal('show');
+                </text>
+            }
+        });
+
+             $(function () {
+            $('#mdp-demo').multiDatesPicker({
+                dateFormat: "yy-mm-dd",
+                 beforeShowDay: function (date) {
+                var day = date.getDay();
+                return [(day !== 0 && day !== 6), ''];
+                },
+                onSelect: function () {
+                    var dates = $('#mdp-demo').multiDatesPicker('getDates');
+                    $('#selectedDates').val(dates.join(','));
+                }
+            });
         });
 
     </script>

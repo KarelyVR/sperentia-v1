@@ -12,5 +12,8 @@ namespace Sperientia___SGI.ViewModel
         public List<SolicitudVacaciones> Solicitudes { get; set; }
         public List<SelectListItem> Estatus { get; set; } = new();
 
+
+        public List<DateTime> Fechas { get; set; } = new();
+
     }
 }

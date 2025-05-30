@@ -156,10 +156,7 @@ namespace Sperientia___SGI.Controllers
         [HttpPost]
         public async Task<IActionResult> ModificarRegistro(UsuarioViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+       
 
             var userExiste = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == model.NetUser.Id);
 
@@ -200,12 +197,6 @@ namespace Sperientia___SGI.Controllers
                 // Actualizar datos en base de datos
                 var result = await _userManager.UpdateAsync(userExiste);
 
-                if (!string.IsNullOrEmpty(model.SelectedRole))
-                {
-                    var rolesActuales = await _userManager.GetRolesAsync(userExiste);
-                    await _userManager.RemoveFromRolesAsync(userExiste, rolesActuales);
-                    await _userManager.AddToRoleAsync(userExiste, model.SelectedRole);
-                }
 
                 if (result.Succeeded)
                 {
@@ -222,13 +213,7 @@ namespace Sperientia___SGI.Controllers
                 ModelState.AddModelError(string.Empty, $"Ocurrió un error al actualizar el usuario: {ex.Message}");
             }
 
-            // Recargar roles si algo falla
-            model.Roles = (await _roleManager.Roles.ToListAsync())
-                .Select(r => new SelectListItem
-                {
-                    Value = r.Name,
-                    Text = r.Name
-                }).ToList();
+      
 
             return View(model);
         }

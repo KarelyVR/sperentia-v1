@@ -86,6 +86,7 @@ namespace Sperientia___SGI.Controllers
 
             var vacacionesE = await _context.SolicitudVacaciones
                 .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.SolicitudVacacionesDias)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
                 .Include(x => x.UsuarioLogin_IdUsuarioRh)
                 .Where(x => x.IdEmpleado == id)
@@ -107,10 +108,11 @@ namespace Sperientia___SGI.Controllers
                        Value = b.UsuarioLogin_IdUsuarioLogin.Id.ToString(),
                        Text = b.UsuarioLogin_IdUsuarioLogin.NombreCompleto
                    }).ToList(),
-                VacacionSolicitud = new SolicitudVacaciones { 
-                    IdEmpleado = id, 
-                    IdEstatus = 1, 
-                    DerechoDiasEmpleado = diasDisponibles 
+                VacacionSolicitud = new SolicitudVacaciones
+                {
+                    IdEmpleado = id,
+                    IdEstatus = 1,
+                    DerechoDiasEmpleado = diasDisponibles
                 },
                 DiasDisponiblesVacaciones = diasDisponibles
             };
@@ -135,19 +137,44 @@ namespace Sperientia___SGI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarSolicitud(VacacionesViewModel model)
+        public async Task<IActionResult> GuardarSolicitud(VacacionesViewModel model, string Fechas)
         {
             try
             {
-                //guardar datos 
+
                 _context.SolicitudVacaciones.Add(model.VacacionSolicitud);
                 await _context.SaveChangesAsync();
+
+                var solicitudId = model.VacacionSolicitud.IdSolicitud;
+
+                if (!string.IsNullOrEmpty(Fechas))
+                {
+                    var fechasList = Fechas
+                       .Split(',')
+                       .Select(d => DateTime.Parse(d))
+                       .ToList();
+
+                    foreach (var fecha in fechasList)
+                    {
+                        var dia = new SolicitudVacacionesDia
+                        {
+                            Fecha = fecha,
+                            IdSolicitud = solicitudId 
+                        };
+
+                        _context.SolicitudVacacionesDias.Add(dia);
+
+                    }
+                    await _context.SaveChangesAsync(); 
+
+                }
+
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-
+             
             }
             return RedirectToAction("VacacionesEmpleado");
         }
