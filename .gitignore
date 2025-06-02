@@ -370,3 +370,5 @@ MigrationBackup/
 FodyWeavers.xsd
 *.pdf
 *.jpg
+Sperentia - SGI/bin/Debug/net8.0/Sperientia - SGI.dll
+*.cache

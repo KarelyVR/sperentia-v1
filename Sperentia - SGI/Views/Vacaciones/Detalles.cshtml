@@ -97,7 +97,12 @@
                             <div class="row mb-3">
                                 <label for="diasSol" class="col-md-5 col-lg-6 col-form-label">Dias solicitados</label>
                                 <div class="col-md-7 col-lg-6">
-                                    <label for="numColab" class="col-form-label">-</label>
+                                    <ul class="list-unstyled mb-0">
+                                        @foreach (var dia in Model.DiasPedidos)
+                                        {
+                                            <li>@dia.Fecha.ToString("dd - MMMM - yyyy")</li>
+                                        }
+                                    </ul>
                                 </div>
                             </div>
                             <hr />
@@ -106,21 +111,31 @@
                             <div class="row mb-3">
                                 <label for="diasAcum" class="col-md-5 col-lg-6 col-form-label">Dias acumulados</label>
                                 <div class="col-md-7 col-lg-6">
-                                    <label for="numColab" class="col-form-label">-</label>
+                                    <label for="numColab" class="col-form-label">@Model.DiasAcumulados</label>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
-                                <label for="diasRes" class="col-md-5 col-lg-6 col-form-label">Dias restantes</label>
+                                <label for="diasRes" class="col-md-5 col-lg-6 col-form-label">Dias restantes (después de aprobar)</label>
                                 <div class="col-md-7 col-lg-6">
-                                    <label for="numColab" class="col-form-label">-</label>
+                                    <label for="numColab" class="col-form-label">@Model.DiasRestantes</label>
                                 </div>
                             </div>
+
+                            @if (!string.IsNullOrEmpty(Model.AlertaDiasRestantes))
+                                {
+                                <div class="row mb-3 alert alert-danger" role="alert">
+                                    <div class="col-md-12" role="alert">
+                                            <span class="text-danger fw-bold">@Model.AlertaDiasRestantes</span>
+                                        </div>
+                                    </div>
+                                }
+
                             <hr />
                             @* SUSTITUTO DURANTE AUSENCIA *@
                             <h5 class="card-title">Datos Sustituto</h5>
                             <div class="row mb-3">
-                                <label for="sustituto" class="col-md-5 col-lg-6 col-form-label">Sustituto durante ausencia (Opcional)</label>
+                                <label for="sustituto" class="col-md-5 col-lg-6 col-form-label">Nombre</label>
                                 <div class="col-md-7 col-lg-6">
                                     <label for="numColab" class="col-form-label">
                                         @Model.Vacaciones.SustitutoNombre
@@ -129,7 +144,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="contacto" class="col-md-5 col-lg-6 col-form-label">Contacto</label>
+                                <label for="contacto" class="col-md-5 col-lg-6 col-form-label">Teléfono</label>
                                 <div class="col-md-7 col-lg-6">
                                     <label for="numColab" class="col-form-label">
                                         @Model.Vacaciones.SustitutoTelefono
@@ -145,13 +160,6 @@
                                     <label for="numColab" class="col-form-label">
                                         @Model.Vacaciones.UsuarioLogin_IdUsuarioRh.NombreCompleto
                                     </label>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="fechaA" class="col-md-5 col-lg-6 col-form-label">Fecha autorización</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="numColab" class="col-form-label">-</label>
                                 </div>
                             </div>
 

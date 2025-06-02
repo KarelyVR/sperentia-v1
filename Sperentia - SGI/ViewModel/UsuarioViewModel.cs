@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Sperientia___SGI.Models.dbModels;
 using System.ComponentModel.DataAnnotations;
@@ -45,7 +46,10 @@ namespace Sperientia___SGI.ViewModel
             public List<SelectListItem>? Roles { get; set; }
             public IFormFile Fotografia { get; set; }
 
+        [ValidateNever]
         public List<ApplicationUser> Usuarios { get; set; }
+
+        [ValidateNever]
         public ApplicationUser NetUser { get; set; }
 
     }

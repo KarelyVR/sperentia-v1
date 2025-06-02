@@ -42,7 +42,7 @@
                             <div class="col-lg-9 col-md-8">
                                 <label>
                                     @* @(Model != null && Model.Any() ? Model.First().DerechoDiasEmpleado.ToString() : "Sin datos") *@
-                                    @Model.Vacaciones?.DerechoDiasEmpleado
+                                    @* @Model.DiasRestantes *@
                                 </label>
                             </div>
                         </div>
@@ -55,6 +55,7 @@
                                     <tr>
                                         <th>No. Solicitud</th>
                                         <th>FechaSolicitud</th>
+                                        <th>Dias</th>
                                         <th>Sustituto</th>
                                         <th>Estatus</th>
                                     </tr>
@@ -68,6 +69,7 @@
                                             <tr>
                                                 <td>@emp.IdSolicitud</td>
                                                 <td>@emp.FechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                                <td>@emp.SolicitudVacacionesDias.Count()</td>
                                                 <td>@emp.SustitutoNombre</td>
                                                 <td>@emp.SolicitudVacacionesEstatu.Descripcion</td>
                                                
@@ -102,14 +104,14 @@
                         <div class="row mb-3">
                             <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fecha de Solicitud</label>
                             <div class="col-md-8 col-lg-7">
-                                <input class="form-control" type="date" asp-for="VacacionSolicitud.FechaSolicitud" required>
+                                <input class="form-control" type="date" asp-for="VacacionSolicitud.FechaSolicitud" readonly required>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fechas</label>
                             <div class="col-md-8 col-lg-7">
-                                <input id="mdp-demo" type="text" class="form-control" readonly />
+                                <input id="mdp-demo" type="text" class="form-control" placeholder="Seleccionar fechas" readonly required/>
                                 <input type="hidden" id="selectedDates" name="Fechas" />
                             </div>
                         </div>
@@ -132,7 +134,7 @@
                         <div class="row mb-3">
                             <label for="rh" class="col-md-4 col-lg-5 col-form-label">Encargado RH</label>
                             <div class="col-md-8 col-lg-7">
-                                <select asp-for="VacacionSolicitud.IdUsuarioRh" class="form-select" asp-items="Model.Usuarios">
+                                <select asp-for="VacacionSolicitud.IdUsuarioRh" class="form-select" asp-items="Model.Usuarios" required>
                                     <option>--Seleccione--</option>
                                 </select>
                             </div>
@@ -149,19 +151,7 @@
     </div>
 </div>
 
-@* <div class="modal fade" id="basicModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
 
-            <div class="modal-body">
-                Se ha enviado la solicitud de vacaciones, por favor espere su respuesta
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div> *@
 
 <!-- Modal con mensaje -->
 <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
@@ -202,12 +192,13 @@
             }
         });
 
-             $(function () {
+        $(function () {
             $('#mdp-demo').multiDatesPicker({
                 dateFormat: "yy-mm-dd",
-                 beforeShowDay: function (date) {
-                var day = date.getDay();
-                return [(day !== 0 && day !== 6), ''];
+                minDate: 0,
+                beforeShowDay: function (date) {
+                    var day = date.getDay();
+                    return [(day !== 0 && day !== 6), ''];
                 },
                 onSelect: function () {
                     var dates = $('#mdp-demo').multiDatesPicker('getDates');

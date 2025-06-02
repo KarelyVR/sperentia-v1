@@ -66,9 +66,37 @@ namespace Sperientia___SGI.Controllers
             return View(model);
         }
 
-        public IActionResult ReporteVacaciones()
+        public async Task<IActionResult> Vacaciones()
         {
-            return View();
+            var solicitudes = await _context.SolicitudVacaciones
+              .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.UsuarioLogin_IdUsuarioRh)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                        .ThenInclude(x => x.Empresa)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                        .ThenInclude(x => x.Departamento)
+               .ToListAsync();
+
+
+            var vacacionesVM = new VacacionesViewModel
+            {
+                Estatus = _context.SolicitudVacacionesEstatus
+               .Select(b => new SelectListItem
+               {
+                   Value = b.IdEstatus.ToString(),
+                   Text = b.Descripcion
+               }).ToList(),
+                //VacacionesDias = _context.SolicitudVacacionesDias
+
+                Solicitudes = solicitudes
+            };
+
+            return View(vacacionesVM);
         }
 
         public async Task<IActionResult> Inventario()
@@ -296,6 +324,46 @@ namespace Sperientia___SGI.Controllers
 
 
             return View(servicioVM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Vacaciones(IFormCollection form)
+        {
+            int? estatusSeleccionado = string.IsNullOrEmpty(form["estatusid"]) ? (int?)null : Convert.ToInt32(form["estatusid"]);
+
+            IQueryable<SolicitudVacaciones> query = _context.SolicitudVacaciones
+                .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.UsuarioLogin_IdUsuarioRh)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                        .ThenInclude(x => x.Empresa)
+                .Include(x => x.UsuarioLogin_IdEmpleado)
+                    .ThenInclude(x => x.UsuarioInformacion)
+                        .ThenInclude(x => x.Departamento);
+
+            if (estatusSeleccionado.HasValue)
+                query = query.Where(x => x.IdEstatus == estatusSeleccionado.Value);
+
+
+            var estatusFiltrado = await query.ToListAsync();
+
+            var vacacionesVM = new VacacionesViewModel
+            {
+                Estatus = _context.SolicitudVacacionesEstatus
+                   .Select(t => new SelectListItem
+                   {
+                       Value = t.IdEstatus.ToString(),
+                       Text = t.Descripcion,
+                       Selected = (estatusSeleccionado.HasValue && t.IdEstatus == estatusSeleccionado.Value)
+                   })
+               .ToList(),
+                Solicitudes = estatusFiltrado
+            };
+
+            return View(vacacionesVM);
         }
     }
 }

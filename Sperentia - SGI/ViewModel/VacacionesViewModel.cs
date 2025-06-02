@@ -9,11 +9,13 @@ namespace Sperientia___SGI.ViewModel
         public SolicitudVacaciones  VacacionSolicitud { get; set; }
         public List<SelectListItem> Usuarios { get; set; } = new();
         public int DiasDisponiblesVacaciones { get; set; }
+        public int DiasAcumulados { get; set; }
+        public int DiasRestantes { get; set; }
+        public List<SolicitudVacacionesDia> DiasPedidos { get; set; }
         public List<SolicitudVacaciones> Solicitudes { get; set; }
         public List<SelectListItem> Estatus { get; set; } = new();
-
-
         public List<DateTime> Fechas { get; set; } = new();
+        public string AlertaDiasRestantes { get; set; }
 
     }
 }

@@ -104,7 +104,7 @@ namespace Sperientia___SGI.Controllers
                             await _userManager.AddToRoleAsync(user, model.SelectedRole);
                         }
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Usuario");
                     }
 
                     foreach (var error in result.Errors)
@@ -156,7 +156,7 @@ namespace Sperientia___SGI.Controllers
         [HttpPost]
         public async Task<IActionResult> ModificarRegistro(UsuarioViewModel model)
         {
-       
+            
 
             var userExiste = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == model.NetUser.Id);
 
@@ -191,12 +191,11 @@ namespace Sperientia___SGI.Controllers
                         await model.Fotografia.CopyToAsync(stream);
                     }
 
-                    userExiste.FotografiaUrl = nombreArchivo;
+                    userExiste.FotografiaUrl = rutaCompleta;
                 }
 
                 // Actualizar datos en base de datos
                 var result = await _userManager.UpdateAsync(userExiste);
-
 
                 if (result.Succeeded)
                 {
@@ -212,8 +211,6 @@ namespace Sperientia___SGI.Controllers
             {
                 ModelState.AddModelError(string.Empty, $"Ocurrió un error al actualizar el usuario: {ex.Message}");
             }
-
-      
 
             return View(model);
         }

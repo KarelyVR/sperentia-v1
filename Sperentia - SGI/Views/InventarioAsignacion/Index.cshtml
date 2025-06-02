@@ -35,7 +35,6 @@
                     <table class="table datatable">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Descripción</th>
                                 <th>Empleado</th>
                                 <th>Fecha Entrega</th>
@@ -46,10 +45,9 @@
                         <tbody>
                             @if (Model != null && Model.Any())
                             {
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.OrderBy(x => x.FechaEntrega))
                                 {
                                     <tr>
-                                        <td>@item.IdInventario</td>
                                         <td>@item.Inventario.Nombre</td>
                                         <td>@item.UsuarioLogin.NombreCompleto</td>
                                         <td>@item.FechaEntrega.ToString("dd/MM/yyyy")</td>

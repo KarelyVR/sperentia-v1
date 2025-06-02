@@ -42,7 +42,7 @@
                                                 <label for="pron" class="col-md-5 col-lg-6 col-form-label">Pronombre</label>
                                                 <div class="col-md-7 col-lg-6">
                                                     <label for="pron" class="col-form-label">
-                                                        @Model.UsuarioInformacion.Pronombre.Descripcion
+                                                        @Model.UsuarioInformacion.Pronombre?.Descripcion
                                                     </label>
                                                 </div>
                                             </div>
@@ -303,7 +303,7 @@
                                                 <label for="superior" class="col-md-5 col-lg-6 col-form-label">Superior directo</label>
                                                 <div class="col-md-7 col-lg-6">
                                                     <label for="numColab" class="col-form-label">
-                                                        @Model.UsuarioInformacion.UsuarioLogin_IdSupervisor.NombreCompleto
+                                                        @Model.UsuarioInformacion.UsuarioLogin_IdSupervisor?.NombreCompleto
                                                     </label>
                                                 </div>
                                             </div>

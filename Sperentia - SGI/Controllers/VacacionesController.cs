@@ -83,6 +83,7 @@ namespace Sperientia___SGI.Controllers
 
             var solicitud = await _context.SolicitudVacaciones
                 .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.SolicitudVacacionesDias)
                 .Include(x => x.UsuarioLogin_IdUsuarioRh)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
@@ -100,59 +101,38 @@ namespace Sperientia___SGI.Controllers
                 return NotFound();
             }
 
+            int diasAcumulados = _context.SolicitudVacacionesDias
+                .Join(_context.SolicitudVacaciones,
+                      dia => dia.IdSolicitud,
+                      sol => sol.IdSolicitud,
+                      (dia, sol) => new { dia, sol })
+                .Where(x => x.sol.IdEmpleado == solicitud.IdEmpleado && x.sol.IdEstatus == 2)
+                .Count();
+            int diasPedidos = _context.SolicitudVacacionesDias
+                    .Where(d => d.IdSolicitud == solicitud.IdSolicitud).Count();
+            int diasRestantes = diasAcumulados == 0
+                ? solicitud.DerechoDiasEmpleado - diasPedidos
+                : solicitud.DerechoDiasEmpleado - diasAcumulados - diasPedidos;
+
+            string alerta = diasRestantes < 0
+                ? "¡Advertencia! Se han solicitado más días de los que se tiene disponibles."
+                : null;
+
             var viewModel = new VacacionesViewModel
             {
-                Vacaciones = solicitud
+                Vacaciones = solicitud,
+                DiasPedidos = _context.SolicitudVacacionesDias
+                    .Where(d => d.IdSolicitud == solicitud.IdSolicitud)
+                    .OrderBy(d => d.Fecha) 
+                    .ToList(),
+                DiasAcumulados = diasAcumulados,
+                DiasRestantes = diasRestantes,
+                AlertaDiasRestantes = alerta
             };
 
             return View(viewModel);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Autorizar(int id)
-        //{
-        //    try
-        //    {
-        //        var solicitud = await _context.SolicitudVacaciones.FindAsync(id);
-        //        if (solicitud == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        solicitud.IdEstatus = 2; 
-        //        await _context.SaveChangesAsync();
-
-        //        return RedirectToAction("Vacaciones");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error: {ex.Message}");
-        //        return RedirectToAction("Vacaciones");
-        //    }
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> Rechazar(int id)
-        //{
-        //    try
-        //    {
-        //        var solicitud = await _context.SolicitudVacaciones.FindAsync(id);
-        //        if (solicitud == null)
-        //        {
-        //            return NotFound();
-        //        }
-
-        //        solicitud.IdEstatus = 3;
-        //        await _context.SaveChangesAsync();
-
-        //        return RedirectToAction("Vacaciones");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error: {ex.Message}");
-        //        return RedirectToAction("Vacaciones"); 
-        //    }
-        //}
         [HttpPost]
         public async Task<IActionResult> ActualizarEstatus(int idSolicitud, int idEstatus)
         {

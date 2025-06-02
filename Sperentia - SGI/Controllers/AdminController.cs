@@ -89,8 +89,8 @@ namespace Sperientia___SGI.Controllers
                 .Include(x => x.SolicitudVacacionesDias)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
                 .Include(x => x.UsuarioLogin_IdUsuarioRh)
-                .Where(x => x.IdEmpleado == id)
-                .ToListAsync();
+                    .Where(x => x.IdEmpleado == id)
+                    .ToListAsync();
 
             // Obtener el UsuarioInformacion relacionado
             var usuarioInfo = await _context.UsuarioInformacions
@@ -112,7 +112,8 @@ namespace Sperientia___SGI.Controllers
                 {
                     IdEmpleado = id,
                     IdEstatus = 1,
-                    DerechoDiasEmpleado = diasDisponibles
+                    DerechoDiasEmpleado = diasDisponibles,
+                    FechaSolicitud = DateTime.Today
                 },
                 DiasDisponiblesVacaciones = diasDisponibles
             };

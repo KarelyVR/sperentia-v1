@@ -39,7 +39,7 @@ namespace MultasTransito.Controllers
             var inventarioVM = new InventarioViewModel
             {
                 InventarioList = _context.Inventarios
-                .Where(t => t.IdCategoria == 4 &&
+                .Where(t => t.InventarioCategoria.Nombre == "Libro" &&
                     !_context.InventarioLibroes
                         .Select(il => il.IdInventario)
                         .Contains(t.IdInventario))
