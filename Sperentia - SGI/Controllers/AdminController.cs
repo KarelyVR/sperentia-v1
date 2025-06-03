@@ -102,12 +102,6 @@ namespace Sperientia___SGI.Controllers
             var viewModel = new VacacionesViewModel
             {
                 Solicitudes = vacacionesE,
-                Usuarios = _context.UsuarioInformacions
-                   .Select(b => new SelectListItem
-                   {
-                       Value = b.UsuarioLogin_IdUsuarioLogin.Id.ToString(),
-                       Text = b.UsuarioLogin_IdUsuarioLogin.NombreCompleto
-                   }).ToList(),
                 VacacionSolicitud = new SolicitudVacaciones
                 {
                     IdEmpleado = id,
@@ -142,7 +136,7 @@ namespace Sperientia___SGI.Controllers
         {
             try
             {
-
+                model.VacacionSolicitud.FechaSolicitud = DateTime.Now;
                 _context.SolicitudVacaciones.Add(model.VacacionSolicitud);
                 await _context.SaveChangesAsync();
 

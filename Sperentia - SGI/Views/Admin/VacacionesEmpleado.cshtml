@@ -101,12 +101,7 @@
                         <input class="form-control" type="hidden" asp-for="VacacionSolicitud.IdEmpleado">
                         <input class="form-control" type="hidden" asp-for="VacacionSolicitud.IdEstatus">
                         <input class="form-control" type="hidden" asp-for="VacacionSolicitud.DerechoDiasEmpleado">
-                        <div class="row mb-3">
-                            <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fecha de Solicitud</label>
-                            <div class="col-md-8 col-lg-7">
-                                <input class="form-control" type="date" asp-for="VacacionSolicitud.FechaSolicitud" readonly required>
-                            </div>
-                        </div>
+                        <input class="form-control" type="hidden" asp-for="VacacionSolicitud.FechaSolicitud">
 
                         <div class="row mb-3">
                             <label for="fecha" class="col-md-4 col-lg-5 col-form-label">Fechas</label>
@@ -130,7 +125,7 @@
                                 <input class="form-control" type="text" asp-for="VacacionSolicitud.SustitutoTelefono">
                             </div>
                         </div>
-
+@* 
                         <div class="row mb-3">
                             <label for="rh" class="col-md-4 col-lg-5 col-form-label">Encargado RH</label>
                             <div class="col-md-8 col-lg-7">
@@ -138,7 +133,7 @@
                                     <option>--Seleccione--</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> *@
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Enviar solicitud</button>
