@@ -6,9 +6,11 @@ using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.ViewModel;
 using System.Security.Claims;
+using Sperientia___SGI.Filtros;
 
 namespace Sperientia___SGI.Controllers
 {
+   
     public class AdminController : Controller
     {
 
@@ -18,7 +20,7 @@ namespace Sperientia___SGI.Controllers
         {
             _context = context;
         }
-
+        
         public IActionResult Index()
         {
             return View();
@@ -31,6 +33,7 @@ namespace Sperientia___SGI.Controllers
         {
             return View();
         }
+        [Validacion]
         public async Task<IActionResult> PerfilUsuario()
         {
             //var usuarioActual = await _userManager.GetUserAsync(User);
@@ -79,7 +82,7 @@ namespace Sperientia___SGI.Controllers
 
             return View(viewModel);
         }
-
+        [Validacion]
         public async Task<IActionResult> VacacionesEmpleado()
         {
             int id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -114,7 +117,7 @@ namespace Sperientia___SGI.Controllers
 
             return View(viewModel);
         }
-
+        [Validacion]
         public async Task<IActionResult> InventarioEmpleado()
         {
             int id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -130,7 +133,7 @@ namespace Sperientia___SGI.Controllers
 
             return View(inventarioA);
         }
-
+        [Validacion]
         [HttpPost]
         public async Task<IActionResult> GuardarSolicitud(VacacionesViewModel model, string Fechas)
         {

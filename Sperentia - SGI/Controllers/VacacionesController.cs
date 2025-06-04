@@ -16,11 +16,13 @@ namespace Sperientia___SGI.Controllers
         public VacacionesController(SperientiaContext context)
         {
             _context = context;
+
         }
         public async Task<IActionResult> Solicitudes()
         {
             var solicitudes = await _context.SolicitudVacaciones
                 .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.SolicitudVacacionesDias)
                 .Include(x => x.UsuarioLogin_IdUsuarioRh)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
@@ -48,6 +50,7 @@ namespace Sperientia___SGI.Controllers
             
             IQueryable<SolicitudVacaciones> query = _context.SolicitudVacaciones
                 .Include(x => x.SolicitudVacacionesEstatu)
+                .Include(x => x.SolicitudVacacionesDias)
                 .Include(x => x.UsuarioLogin_IdUsuarioRh)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
                 .Include(x => x.UsuarioLogin_IdEmpleado)
@@ -136,11 +139,11 @@ namespace Sperientia___SGI.Controllers
         [HttpPost]
         public async Task<IActionResult> ActualizarEstatus(int idSolicitud, int idEstatus)
         {
-            // Lógica para actualizar el estatus
-            // Por ejemplo:
+            int currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             var solicitud = await _context.SolicitudVacaciones.FindAsync(idSolicitud);
             if (solicitud != null)
             {
+                solicitud.IdUsuarioRh = currentUserId;
                 solicitud.IdEstatus = idEstatus;
                 await _context.SaveChangesAsync();
                 TempData["Mensaje"] = "Estatus de la solicitud actualizado correctamente";

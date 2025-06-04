@@ -48,9 +48,8 @@
                         <thead>
                             <tr>
                                 <th>No. Empleado</th>
+                                <th>Dias pedidos</th>
                                 <th>Fecha Solicitud</th>
-                                <th>Sustituto</th>
-                                <th>Responsable RH</th>
                                 <th>Estado</th>
                                 <th> </th>
                             </tr>
@@ -63,9 +62,8 @@
                                 {
                                     <tr>
                                         <td>@emp.UsuarioLogin_IdEmpleado.UsuarioInformacion.NumeroColaborador</td>
+                                        <td>@emp.SolicitudVacacionesDias.Count()</td>
                                         <td>@emp.FechaSolicitud.ToString("dd-MM-yyyy")</td>
-                                        <td>@emp.SustitutoNombre</td>
-                                        <td>@emp.UsuarioLogin_IdUsuarioRh.NombreCompleto</td>
                                         <td class="
                                             @(
                                                 emp.SolicitudVacacionesEstatu.Descripcion == "Aprobado" ? "bg-success text-white" :
