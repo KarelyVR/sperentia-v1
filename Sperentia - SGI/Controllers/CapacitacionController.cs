@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.Models.dbModels;
+using Sperientia___SGI.Filtros;
 
 namespace MultasTransito.Controllers
 {
+    [ValidarAdmin]
+
     public class CapacitacionController : Controller
     {
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Sperientia___SGI.Filtros;
 using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.ViewModel;
@@ -9,6 +10,7 @@ using System.Security.Claims;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class VacacionesController : Controller
     {
         private readonly SperientiaContext _context;

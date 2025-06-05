@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.ViewModel;
+using Sperientia___SGI.Filtros;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class ReporteController : Controller
     {
         private readonly SperientiaContext _context;

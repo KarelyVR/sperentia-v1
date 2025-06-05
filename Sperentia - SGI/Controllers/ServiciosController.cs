@@ -1,12 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Sperientia___SGI.Filtros;
 using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.ViewModel;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class ServiciosController : Controller
     {
         private readonly SperientiaContext _context;

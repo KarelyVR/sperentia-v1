@@ -1,39 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Sperientia___SGI.Models;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using System.Security.Claims;
+using Sperientia___SGI.Models.dbModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Sperientia___SGI.Filtros
 {
-    public class Validacion : ActionFilterAttribute
+    public class Validacion : IAsyncActionFilter
     {
+        private readonly SperientiaContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public override void OnActionExecuting(ActionExecutingContext context)
+
+        public Validacion(SperientiaContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+
+
+        public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var user = context.HttpContext.User;
-            var claim = user?.FindFirst(ClaimTypes.NameIdentifier);
+            var claim = user.FindFirst(ClaimTypes.NameIdentifier);
 
             if (claim == null || !int.TryParse(claim.Value, out int currentUserId))
             {
-                context.Result = new RedirectToActionResult("Login", "Cuenta", null);
+                context.Result = new RedirectToActionResult("Index", "Admin", null);
                 return;
             }
 
-            using (var db = new SperientiaContext())
-            {
-                bool tieneParametros = db.UsuarioInformacions.Any(p => p.IdUsuarioLogin == currentUserId);
+            bool tienePerfil = _context.UsuarioInformacions.Any(p => p.IdUsuarioLogin == currentUserId);
 
-                if (!tieneParametros)
-                {
-                    context.Result = new RedirectToActionResult("AccesoDenegado", "Error", null);
-                    return;
-                }
+            if (!tienePerfil)
+            {
+                context.Result = new RedirectToActionResult("Index", "Admin", null);
+                return;
             }
 
-            base.OnActionExecuting(context);
+            await next();
         }
+        public void OnActionExecuted(ActionExecutedContext context) { }
+
     }
 }

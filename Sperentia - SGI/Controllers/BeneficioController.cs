@@ -11,9 +11,11 @@ using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.ViewModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using Sperientia___SGI.Filtros;
 
 namespace MultasTransito.Controllers
 {
+    [ValidarAdmin]
     public class BeneficioController : Controller
     {
 
@@ -38,42 +40,7 @@ namespace MultasTransito.Controllers
                 ViewBag.CurrentUserId = currentUserId;
             }
 
-            //// Obtener los beneficios que el usuario ya tiene asignados
-            //var beneficiosUsuario = _context.BeneficioUsuarios
-            //    .Where(bu => bu.IdUsuarioInformacion == currentUserId)
-            //    .Select(bu => bu.Beneficio)
-            //    .ToList();
-
-            //// Obtener todos los beneficios de la tabla Beneficios
-            //var todosLosBeneficios = _context.Beneficios.ToList();
-
-            //// Obtener los beneficios que aún no tiene el usuario
-            //var beneficiosDisponibles = todosLosBeneficios
-            //    .Where(b => !beneficiosUsuario.Any(bu => bu.IdBeneficio == b.IdBeneficio))
-            //    .ToList();
-
-            //var model = new BeneficioViewModel
-            //{
-            //    // Beneficios que ya tiene el usuario
-            //    Beneficios = beneficiosUsuario
-            //        .Select(b => new SelectListItem
-            //        {
-            //            Value = b.IdBeneficio.ToString(),
-            //            Text = b.Nombre
-            //        })
-            //        .ToList(),
-
-            //    // Beneficios disponibles para agregar (se enviarán al frontend)
-            //    BeneficiosDisponibles = beneficiosDisponibles
-            //        .Select(b => new SelectListItem
-            //        {
-            //            Value = b.IdBeneficio.ToString(),
-            //            Text = b.Nombre
-            //        })
-            //        .ToList(),
-
-            //    BeneficiosSeleccionados = beneficiosUsuario.Select(b => b.IdBeneficio).ToList()
-            //};
+            
             var capacitacionVM = new CapacitacionViewModel
             {
                 TipoCapacitacion = _context.CapacitacionTipoes

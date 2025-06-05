@@ -5,9 +5,11 @@ using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using Sperientia___SGI.Filtros;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class UsuarioController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

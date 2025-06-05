@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sperientia___SGI.Filtros;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class AsignacionController : Controller
     {
         public IActionResult Index()

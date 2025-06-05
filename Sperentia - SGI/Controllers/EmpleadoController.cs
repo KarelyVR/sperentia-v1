@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using Sperientia___SGI.Filtros;
 using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.ViewModel;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace Sperientia___SGI.Controllers
 {
+    [ValidarAdmin]
     public class EmpleadoController : Controller
     {
         private readonly SperientiaContext _context;

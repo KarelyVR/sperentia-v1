@@ -23,6 +23,14 @@ namespace Sperientia___SGI.Controllers
         
         public IActionResult Index()
         {
+            if (int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int currentUserId))
+            {
+                if (!_context.UsuarioInformacions.Any(p => p.IdUsuarioLogin == currentUserId))
+                {
+                    ViewBag.Mensaje = "No se registrado su perfil, por favor contacte con su administrador.";
+                }
+            }
+
             return View();
         }
         public IActionResult Login()

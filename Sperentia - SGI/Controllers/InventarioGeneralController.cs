@@ -10,9 +10,11 @@ using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.Models.dbModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Sperientia___SGI.ViewModel;
+using Sperientia___SGI.Filtros;
 
 namespace MultasTransito.Controllers
 {
+    [ValidarAdmin]
     public class InventarioGeneralController : Controller
     {
 
