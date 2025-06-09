@@ -40,7 +40,9 @@ namespace Sperientia___SGI.Controllers
                        Value = b.IdCategoria.ToString(),
                        Text = b.Nombre
                    }).ToList(),
-                Inventario = new Inventario()
+                Inventario = new Inventario(),
+                Libro = new InventarioLibro(),
+                General = new InventarioGeneral()
             };
 
             return View(inventarioVM);
@@ -73,10 +75,23 @@ namespace Sperientia___SGI.Controllers
                     model.Inventario.Foto = $"/img/inv/{nombreArchivo}";
                 }
 
-
                 //guardar datos inventario
                 _context.Inventarios.Add(model.Inventario);
                 await _context.SaveChangesAsync();
+
+                if (model.Inventario.IdCategoria == 1)
+                {
+                    model.Libro.IdInventario = model.Inventario.IdInventario;
+                    _context.InventarioLibroes.Add(model.Libro);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    model.General.IdInventario = model.Inventario.IdInventario;
+                    _context.InventarioGenerals.Add(model.General);
+                    await _context.SaveChangesAsync();
+                }
+
             }
 
             catch (Exception ex)
@@ -144,7 +159,7 @@ namespace Sperientia___SGI.Controllers
         public async Task<IActionResult> ModificarRegistro(InventarioViewModel model)
         {
             var rutaBase = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/inv");
-           
+
             try
             {
                 if (model.Fotografia != null && model.Fotografia.Length > 0)
