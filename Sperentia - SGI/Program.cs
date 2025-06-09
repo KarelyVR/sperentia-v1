@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Sperientia___SGI;
+using Sperientia___SGI.Filtros;
 using Sperientia___SGI.Models.dbModels;
 using Sperientia___SGI.Models.dbModels.DbContext;
 using Sperientia___SGI.Models.Services;
@@ -44,6 +45,8 @@ builder.Services.AddRazorPages();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<Validacion>();
+builder.Services.AddScoped<ValidarAdmin>();
 
 var app = builder.Build();
 
