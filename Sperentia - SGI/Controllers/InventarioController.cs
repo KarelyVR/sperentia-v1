@@ -111,7 +111,9 @@ namespace Sperientia___SGI.Controllers
 
             var inventario = await _context.Inventarios
                 .Include(d => d.InventarioCategoria)
+                .Include(d => d.InventarioLibro)
                 .FirstOrDefaultAsync(m => m.IdInventario == id);
+           
 
             if (inventario == null)
             {
