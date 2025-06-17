@@ -46,57 +46,14 @@
                             </div>
 
                             <div class="row mb-3">
-<<<<<<< Updated upstream
-                                <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="autor" class="col-form-label">
-                                        @Model.Inventario.InventarioLibro.Autor
-=======
                                 <label for="categoria" class="col-md-5 col-lg-6 col-form-label">Categoria</label>
                                 <div class="col-md-7 col-lg-6">
                                     <label for="categoria" class="col-form-label" id="categoria">
                                         @Model.Inventario.InventarioCategoria.Nombre
->>>>>>> Stashed changes
                                     </label>
                                 </div>
                             </div>
 
-<<<<<<< Updated upstream
-                            <div class="row mb-3">
-                                <label for="editorial" class="col-md-5 col-lg-6 col-form-label">Editorial</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="editorial" class="col-form-label">
-                                        @Model.Inventario.InventarioLibro.Editorial
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="isbn" class="col-md-5 col-lg-6 col-form-label">ISBN</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="isbn" class="col-form-label">
-                                        @Model.Inventario.InventarioLibro.Isbn
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="reseña" class="col-md-5 col-lg-6 col-form-label">Reseña</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="reseña" class="col-form-label">
-                                        @Model.Inventario.InventarioLibro.Reseña
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="digital" class="col-md-5 col-lg-6 col-form-label">Formato</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="digital" class="col-form-label">
-                                       @(Model.Inventario.InventarioLibro.EsDigital ? "Digital" : "Fisico")
-                                    </label>
-                                </div>
-=======
                             <div id="inventarioLibro" class="d-none">
                                 <div class="row mb-3">
                                     <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
@@ -190,7 +147,6 @@
                                     </div>
                                 </div>
 
->>>>>>> Stashed changes
                             </div>
 
                             <div class="row mb-3">
@@ -246,25 +202,6 @@
     </div>
 </section>
 
-
-<div class="modal fade" id="verticalycentered" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered  modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-exclamation-triangle"></i> Eliminar</h5>
-            </div>
-            <div class="modal-body">
-                <div class=" d-flex w-80 justify-content-center">
-                    ¿Desea eliminar el registro?
-                </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @section Scripts {
 
