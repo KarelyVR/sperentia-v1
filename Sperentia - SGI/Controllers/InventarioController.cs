@@ -115,25 +115,14 @@ namespace Sperientia___SGI.Controllers
                 .FirstOrDefaultAsync(m => m.IdInventario == id);
            
 
-
             if (inventario == null)
             {
                 return NotFound();
             }
 
-            var general = await _context.InventarioGenerals
-               .Include(d => d.Inventario)
-               .FirstOrDefaultAsync(m => m.IdInventario == id);
-
-            var libro = await _context.InventarioLibroes
-                .Include(d => d.Inventario)
-                .FirstOrDefaultAsync(m => m.IdInventario == id);
-
             var viewModel = new InventarioViewModel
             {
-                Inventario = inventario,
-                Libro = libro,
-                General = general
+                Inventario = inventario
             };
 
             return View(viewModel);
