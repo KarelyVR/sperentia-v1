@@ -37,15 +37,6 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="categoria" class="col-md-5 col-lg-6 col-form-label">Categoria</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <label for="categoria" class="col-form-label">
-                                        @Model.Inventario.InventarioCategoria.Nombre
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
                                 <label for="descripcion" class="col-md-5 col-lg-6 col-form-label">Descripción</label>
                                 <div class="col-md-7 col-lg-6">
                                     <label for="descripcion" class="col-form-label">
@@ -55,14 +46,22 @@
                             </div>
 
                             <div class="row mb-3">
+<<<<<<< Updated upstream
                                 <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
                                 <div class="col-md-7 col-lg-6">
                                     <label for="autor" class="col-form-label">
                                         @Model.Inventario.InventarioLibro.Autor
+=======
+                                <label for="categoria" class="col-md-5 col-lg-6 col-form-label">Categoria</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <label for="categoria" class="col-form-label" id="categoria">
+                                        @Model.Inventario.InventarioCategoria.Nombre
+>>>>>>> Stashed changes
                                     </label>
                                 </div>
                             </div>
 
+<<<<<<< Updated upstream
                             <div class="row mb-3">
                                 <label for="editorial" class="col-md-5 col-lg-6 col-form-label">Editorial</label>
                                 <div class="col-md-7 col-lg-6">
@@ -97,6 +96,101 @@
                                        @(Model.Inventario.InventarioLibro.EsDigital ? "Digital" : "Fisico")
                                     </label>
                                 </div>
+=======
+                            <div id="inventarioLibro" class="d-none">
+                                <div class="row mb-3">
+                                    <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="autor" class="col-form-label">
+                                            @Model.Libro?.Autor
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="nombre" class="col-md-5 col-lg-6 col-form-label">Editorial</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="nombre" class="col-form-label">
+                                            @Model.Libro?.Editorial
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="categoria" class="col-md-5 col-lg-6 col-form-label">ISBN</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="categoria" class="col-form-label">
+                                            @Model.Libro?.Isbn
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="reseña" class="col-md-5 col-lg-6 col-form-label">Reseña</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="reseña" class="col-form-label">
+                                            @Model.Libro?.Reseña
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3 align-items-center">
+                                    <label class="col-md-5 col-lg-6 col-form-label">Formato</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label class="col-form-label">
+                                            @((Model.Libro?.EsDigital ?? false) ? "Digital" : "Físico")
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="inventarioGeneral" class="d-none">
+                                <div class="row mb-3">
+                                    <label for="marca" class="col-md-5 col-lg-6 col-form-label">Marca</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="modelo" class="col-form-label">
+                                            @Model.General?.Marca
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="modelo" class="col-md-5 col-lg-6 col-form-label">Modelo</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="modelo" class="col-form-label">
+                                            @Model.General?.Modelo
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="NoSerie" class="col-md-5 col-lg-6 col-form-label">No. Serie</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="noSerie" class="col-form-label">
+                                            @Model.General?.NumeroSerie
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="condicion" class="col-md-5 col-lg-6 col-form-label">Condición</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="condicion" class="col-form-label">
+                                            @Model.General?.EstadoCondicion
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="fechaG" class="col-md-5 col-lg-6 col-form-label">Fecha de Garantía</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <label for="fechaG" class="col-form-label">
+                                            @Model.General?.GarantiaFechaFin?.ToString("dd/MM/yyyy")
+                                        </label>
+                                    </div>
+                                </div>
+
+>>>>>>> Stashed changes
                             </div>
 
                             <div class="row mb-3">
@@ -126,7 +220,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3"> 
+                            <div class="row mb-3">
                                 <label for="foto" class="col-md-5 col-lg-6 col-form-label">Fotografia</label>
                                 <div class="col-md-7 col-lg-6">
                                     <img src="@Model.Inventario.Foto" class="img-fluid rounded-start" style="width:25%;">
@@ -171,3 +265,24 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const categoria = document.getElementById('categoria');
+            const divLibro = document.getElementById('inventarioLibro');
+            const divGeneral = document.getElementById('inventarioGeneral');
+
+            const valorCategoria = categoria.textContent.trim().toLowerCase();
+            if (valorCategoria === 'libro') {
+                divLibro.classList.remove('d-none');
+                divGeneral.classList.add('d-none');
+            } else {
+                divLibro.classList.add('d-none');
+                divGeneral.classList.remove('d-none');
+            }
+        });
+    </script>
+}
