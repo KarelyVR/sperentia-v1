@@ -14,7 +14,9 @@ using Sperientia___SGI.Filtros;
 
 namespace MultasTransito.Controllers
 {
-    [ValidarAdmin]
+    //[ValidarAdmin]
+    [NonAction]
+
     public class InventarioGeneralController : Controller
     {
 
