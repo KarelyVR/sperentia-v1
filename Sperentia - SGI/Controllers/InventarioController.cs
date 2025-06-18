@@ -155,6 +155,15 @@ namespace Sperientia___SGI.Controllers
                 return NotFound();
             }
 
+
+            var general = await _context.InventarioGenerals
+               .Include(d => d.Inventario)
+               .FirstOrDefaultAsync(m => m.IdInventario == id);
+
+            var libro = await _context.InventarioLibroes
+                .Include(d => d.Inventario)
+                .FirstOrDefaultAsync(m => m.IdInventario == id);
+
             var viewModel = new InventarioViewModel
             {
                 InventarioCategoria = _context.InventarioCategorias.Select(t => new SelectListItem
@@ -162,7 +171,9 @@ namespace Sperientia___SGI.Controllers
                     Value = t.IdCategoria.ToString(),
                     Text = t.Nombre
                 }).ToList(),
-                Inventario = inventario
+                Inventario = inventario,
+                Libro = libro,
+                General = general
             };
 
             return View(viewModel);
@@ -209,6 +220,39 @@ namespace Sperientia___SGI.Controllers
                     _context.Update(inventarioExiste);
                 }
 
+                if (model.Inventario.IdCategoria == 1)
+                {
+                    var libroExiste = await _context.InventarioLibroes
+                  .FirstOrDefaultAsync(x => x.IdInventario == model.Libro.IdInventario);
+
+                    if (libroExiste != null)
+                    {
+                        libroExiste.Autor = model.Libro.Autor;
+                        libroExiste.Reseña = model.Libro.Reseña;
+                        libroExiste.Isbn = model.Libro.Isbn;
+                        libroExiste.Editorial = model.Libro.Editorial;
+                        libroExiste.EsDigital = model.Libro.EsDigital;
+
+                        _context.Update(libroExiste);
+                    }
+                }
+                else
+                {
+                    var generalExiste = await _context.InventarioGenerals
+                   .FirstOrDefaultAsync(x => x.IdInventario == model.General.IdInventario);
+
+                    if (generalExiste != null)
+                    {
+                        generalExiste.Marca = model.General.Marca;
+                        generalExiste.Modelo = model.General.Modelo;
+                        generalExiste.NumeroSerie = model.General.NumeroSerie;
+                        generalExiste.EstadoCondicion = model.General.EstadoCondicion;
+                        generalExiste.GarantiaFechaFin = model.General.GarantiaFechaFin;
+
+                        _context.Update(generalExiste);
+                    }
+                }
+                
                 await _context.SaveChangesAsync();
 
                 TempData["SuccessMessage"] = "Registro actualizado correctamente";
