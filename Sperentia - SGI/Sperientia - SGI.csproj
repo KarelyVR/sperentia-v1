@@ -13,6 +13,8 @@
     <Compile Remove="Models\ViewModels\**" />
     <Compile Remove="Views\Direccion\**" />
     <Compile Remove="Views\Home\NewFolder\**" />
+    <Compile Remove="Views\InventarioGeneral\**" />
+    <Compile Remove="Views\InventarioLibro\**" />
     <Compile Remove="Views\NewFolder1\**" />
     <Compile Remove="Views\NewFolder3\**" />
     <Compile Remove="Views\Reporte\NewFolder\**" />
@@ -20,6 +22,8 @@
     <Content Remove="Models\ViewModels\**" />
     <Content Remove="Views\Direccion\**" />
     <Content Remove="Views\Home\NewFolder\**" />
+    <Content Remove="Views\InventarioGeneral\**" />
+    <Content Remove="Views\InventarioLibro\**" />
     <Content Remove="Views\NewFolder1\**" />
     <Content Remove="Views\NewFolder3\**" />
     <Content Remove="Views\Reporte\NewFolder\**" />
@@ -27,6 +31,8 @@
     <EmbeddedResource Remove="Models\ViewModels\**" />
     <EmbeddedResource Remove="Views\Direccion\**" />
     <EmbeddedResource Remove="Views\Home\NewFolder\**" />
+    <EmbeddedResource Remove="Views\InventarioGeneral\**" />
+    <EmbeddedResource Remove="Views\InventarioLibro\**" />
     <EmbeddedResource Remove="Views\NewFolder1\**" />
     <EmbeddedResource Remove="Views\NewFolder3\**" />
     <EmbeddedResource Remove="Views\Reporte\NewFolder\**" />
@@ -34,12 +40,16 @@
     <None Remove="Models\ViewModels\**" />
     <None Remove="Views\Direccion\**" />
     <None Remove="Views\Home\NewFolder\**" />
+    <None Remove="Views\InventarioGeneral\**" />
+    <None Remove="Views\InventarioLibro\**" />
     <None Remove="Views\NewFolder1\**" />
     <None Remove="Views\NewFolder3\**" />
     <None Remove="Views\Reporte\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\InventarioGeneralController.cs" />
+    <Compile Remove="Controllers\InventarioLibroController.cs" />
     <Compile Remove="Views\Admin\VacacionesEmpleado.cs" />
   </ItemGroup>
 
