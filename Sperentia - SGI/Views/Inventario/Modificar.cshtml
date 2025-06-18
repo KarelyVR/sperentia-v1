@@ -33,18 +33,98 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="descripcion" class="col-md-5 col-lg-6 col-form-label">Descripción</label>
+                                <div class="col-md-7 col-lg-6">
+                                    <textarea class="form-control" id="floatingTextarea" style="height: 100px;" asp-for="Inventario.Descripcion"></textarea>
+                                </div>
+                            </div> 
+                            
+                            <div class="row mb-3">
                                 <label for="categoria" class="col-md-5 col-lg-6 col-form-label">Categoria</label>
                                 <div class="col-md-7 col-lg-6">
-                                    <select asp-for="Inventario.IdCategoria" class="form-select" asp-items="Model.InventarioCategoria">
+                                    <select id="categoria" asp-for="Inventario.IdCategoria" class="form-select" asp-items="Model.InventarioCategoria">
                                         <option>--Seleccione--</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="descripcion" class="col-md-5 col-lg-6 col-form-label">Descripción</label>
-                                <div class="col-md-7 col-lg-6">
-                                    <textarea class="form-control" id="floatingTextarea" style="height: 100px;" asp-for="Inventario.Descripcion"></textarea>
+                            <div id="divLibro" class="d-none">
+                                <div class="row mb-3">
+                                    <label for="autor" class="col-md-5 col-lg-6 col-form-label">Autor</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="Libro.Autor">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="editorial" class="col-md-5 col-lg-6 col-form-label">Editorial</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="Libro.Editorial">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="isbn" class="col-md-5 col-lg-6 col-form-label">ISBN</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="Libro.Isbn">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="reseña" class="col-md-5 col-lg-6 col-form-label">Reseña</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <textarea class="form-control" id="floatingTextarea" style="height: 100px;" asp-for="Libro.Reseña"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3 align-items-center">
+                                    <label class="col-md-5 col-lg-6 col-form-label">Es Digital</label>
+                                    <div class="col-md-7 col-lg-6 d-flex align-items-center gap-2">
+                                        <input type="checkbox" class="form-check-input" asp-for="Libro.EsDigital" />
+                                        <label class="mb-0">
+                                            Sí
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="divGeneral" class="d-none">
+                                <div class="row mb-3">
+                                    <label for="marca" class="col-md-5 col-lg-6 col-form-label">Marca</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="General.Marca">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="modelo" class="col-md-5 col-lg-6 col-form-label">Modelo</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="General.Modelo">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="noSerio" class="col-md-5 col-lg-6 col-form-label">No. Serie</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="number" asp-for="General.NumeroSerie">
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label for="condicion" class="col-md-5 col-lg-6 col-form-label">Condición</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="text" asp-for="General.EstadoCondicion">
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <label for="fechaG" class="col-md-5 col-lg-6 col-form-label">Fecha de Garantía</label>
+                                    <div class="col-md-7 col-lg-6">
+                                        <input class="form-control" type="date" asp-for="General.GarantiaFechaFin">
+                                    </div>
                                 </div>
                             </div>
 
@@ -98,3 +178,32 @@
         </div>
     </div>
 </section>
+
+
+@section Scripts {
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectCategoria = document.getElementById('categoria');
+            const divLibro = document.getElementById('divLibro');
+            const divGeneral = document.getElementById('divGeneral');
+
+            function toggleAutorDiv() {
+                const selectedText = selectCategoria.options[selectCategoria.selectedIndex].text.toLowerCase();
+                console.log(selectedText);
+                if (selectedText === 'libro') {
+                    divLibro.classList.remove('d-none');
+                    divGeneral.classList.add('d-none');
+                } else {
+                    divLibro.classList.add('d-none');
+                    divGeneral.classList.remove('d-none');
+                }
+            }
+
+            selectCategoria.addEventListener('change', toggleAutorDiv);
+
+            toggleAutorDiv();
+        });
+    </script>
+}
